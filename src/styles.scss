@@ -1,0 +1,24 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+small {
+  margin-top: 0.25rem;
+  text-align: center;
+
+  &.error {
+    color: #ff6b6b;
+  }
+
+  &.hint {
+    color: #6c757d;
+  }
+}
+

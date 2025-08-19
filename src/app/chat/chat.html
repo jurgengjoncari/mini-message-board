@@ -1,0 +1,47 @@
+<div class="chat-container">
+  <div class="top-bar">
+    <h3 class="title">Mini Message Board</h3>
+    <div class="auth-actions">
+      @if (!isLoggedIn) {
+        <button routerLink="/login">Login</button>
+        <span>|</span>
+        <button routerLink="/signup">Sign Up</button>
+      } @else {
+        <button (click)="logout()">Logout</button>
+      }
+    </div>
+  </div>
+  <div class="messages" #messagesContainer>
+    @if (loading) {
+      @for (i of [1, 2, 3, 4, 5]; track i) {
+        <div class="chat-message loading"></div>
+      }
+    } @else {
+      @for (msg of messages; track msg._id) {
+        <div [class]="'chat-message' + (msg.senderId?._id === currentUserId ? ' sent' : '')">
+          <div class="chat-author">{{ msg.senderId?.username || 'Unknown' }}</div>
+          <div class="chat-content">{{ msg.content }}</div>
+          <div class="chat-time">{{ msg.createdAt | date:'short' }}</div>
+        </div>
+      }
+    }
+  </div>
+  <form class="chat-form">
+    <div style="display: flex">
+      <input
+        type="text"
+        [(ngModel)]="newMessage"
+        name="message"
+        (keyup.enter)="sendMessage()"
+        [placeholder]="isLoggedIn ? 'Type your message here...' : 'Please log in to send messages'"
+        class="chat-input"
+        required
+        [disabled]="!isLoggedIn || loading"
+      />
+      <button type="button" (click)="sendMessage()" [disabled]="!isLoggedIn || loading">Send</button>
+    </div>
+    @if (errorMessage) {
+      <div class="error">{{errorMessage}}</div>
+    }
+  </form>
+</div>
