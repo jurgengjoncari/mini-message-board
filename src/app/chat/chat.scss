@@ -87,6 +87,8 @@ $shadow: 0 6px 20px rgba(0,0,0,0.6);
       .chat-author {
         font-weight: bold;
         margin-bottom: 0.25rem;
+        overflow: auto;
+        text-overflow: ellipsis;
         //color: lighten($primary, 20%);
       }
 
