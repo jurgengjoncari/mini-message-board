@@ -7,12 +7,13 @@ import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-chat',
-    imports: [
-        DatePipe,
-        FormsModule,
-        RouterLink
-    ],
+  imports: [
+    DatePipe,
+    FormsModule,
+    RouterLink
+  ],
   templateUrl: './chat.html',
+  standalone: true,
   styleUrl: './chat.scss'
 })
 export class Chat implements OnInit {

@@ -105,6 +105,11 @@ $shadow: 0 6px 20px rgba(0,0,0,0.6);
       &.sent {
         align-self: flex-end;
         background: $message-sent-bg;
+        border-bottom-right-radius: 0;
+      }
+
+      &.received {
+        border-bottom-left-radius: 0;
       }
 
       &.loading {
@@ -121,6 +126,11 @@ $shadow: 0 6px 20px rgba(0,0,0,0.6);
           align-self: flex-end;
           height: 12rem;
           width: 60%;
+          border-bottom-right-radius: 0;
+        }
+
+        &:nth-child(2n + 1) {
+          border-bottom-left-radius: 0;
         }
 
         &:nth-child(3n) {
