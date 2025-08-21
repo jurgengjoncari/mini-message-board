@@ -27,7 +27,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "outputPath": "dist"
+            "outputPath": "dist/mini-message-board-fe"
           },
           "configurations": {
             "production": {
