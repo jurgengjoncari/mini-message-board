@@ -6,7 +6,6 @@
            formControlName="username"
            type="text"
            placeholder="Username"
-           required
     />
 
     <div style="display: flex; flex-direction: column;">
@@ -14,8 +13,6 @@
              formControlName="password"
              type="password"
              placeholder="Password"
-             minlength="8"
-             required
       />
       @if (mode === 'signup') {
         <small [class]="errorMessage ? 'error' : 'hint'">
@@ -24,7 +21,12 @@
       }
     </div>
 
-    <button class="auth-button" type="submit">{{mode === 'login' ? 'Login' : 'Sign up'}}</button>
+    <button class="auth-button"
+            type="submit"
+            [disabled]="authForm.invalid"
+    >
+      {{mode === 'login' ? 'Login' : 'Sign up'}}
+    </button>
 
     <div class="auth-footer">
       @if (mode === 'login') {

@@ -38,7 +38,7 @@
         required
         [disabled]="!isLoggedIn || loading"
       />
-      <button type="button" (click)="sendMessage()" [disabled]="!isLoggedIn || loading">Send</button>
+      <button type="button" (click)="sendMessage()" [disabled]="!isLoggedIn || loading || !newMessage.trim()">Send</button>
     </div>
     @if (errorMessage) {
       <div class="error">{{errorMessage}}</div>

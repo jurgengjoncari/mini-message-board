@@ -23,7 +23,7 @@ export class Auth {
   errorMessage: string | null = null;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute
@@ -31,9 +31,9 @@ export class Auth {
     this.route.data.subscribe(data => {
       this.mode = data['mode'];
     })
-    this.authForm = this.fb.group({
+    this.authForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 

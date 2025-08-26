@@ -180,6 +180,11 @@ $text-muted: #bbb;
       &::placeholder {
         color: $text-muted;
       }
+
+      &:disabled {
+        filter: grayscale(100%);
+        cursor: not-allowed;
+      }
     }
 
     button {
@@ -193,9 +198,14 @@ $text-muted: #bbb;
       box-shadow: $shadow-md;
       transition: background 0.2s ease, transform 0.1s ease;
 
-      &:hover {
+      &:not(:disabled):hover {
         background: $primary-hover;
         transform: scale(1.05);
+      }
+
+      &:disabled {
+        filter: grayscale(100%);
+        cursor: not-allowed;
       }
     }
   }

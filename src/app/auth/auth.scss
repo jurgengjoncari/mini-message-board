@@ -61,6 +61,11 @@
     background: linear-gradient(135deg, $color-primary, #00aaff);
     transform: scale(1.02);
   }
+
+  &:disabled {
+    filter: grayscale(1);
+    cursor: not-allowed;
+  }
 }
 
 .auth-footer {
