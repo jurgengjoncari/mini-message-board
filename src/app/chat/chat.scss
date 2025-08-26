@@ -76,11 +76,11 @@ $text-muted: #bbb;
   .messages {
     flex: 1;
     overflow-y: auto;
-    padding: $space-md;
     display: flex;
     flex-direction: column;
     gap: $space-sm;
     scrollbar-width: thin;
+    padding: $space-md $space-md 4.5rem;
 
     .chat-message {
       background: $color-surface;
@@ -152,6 +152,9 @@ $text-muted: #bbb;
   }
 
   .chat-form {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
     //border-radius: $radius-lg;
@@ -165,13 +168,14 @@ $text-muted: #bbb;
     .chat-input {
       flex: 1;
       padding: $space-xs $space-sm;
-      border: 1px solid $color-surface;
+      border: $border-width-none $border-style-solid $color-on-surface;
       background: $color-surface;
       color: $color-on-surface;
       border-radius: $radius-md;
       outline: none;
       font-size: $font-size-md;
       margin-right: $space-xs;
+      box-shadow: $shadow-md;
 
       &::placeholder {
         color: $text-muted;
