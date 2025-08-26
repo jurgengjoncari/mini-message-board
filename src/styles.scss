@@ -1,24 +1,44 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: black;
-}
+@use "variables" as *;
 
-* {
-  box-sizing: border-box;
+html {
+  height: 100vh;
+  background-color: $color-background;
+
+  body {
+    height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family:
+      $font-family-base,
+      system-ui,
+        /* macOS 10.11-10.12 */ -apple-system,
+        /* Windows 6+ */ "Segoe UI",
+        /* Android 4+ */ "Roboto",
+        /* Ubuntu 10.10+ */ "Ubuntu",
+        /* Gnome 3+ */ "Cantarell",
+        /* KDE Plasma 5+ */ "Noto Sans",
+        /* fallback */ sans-serif,
+        /* macOS emoji */ "Apple Color Emoji",
+        /* Windows emoji */ "Segoe UI Emoji",
+        /* Windows emoji */ "Segoe UI Symbol",
+        /* Linux emoji */ "Noto Color Emoji";
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 small {
-  margin-top: 0.25rem;
+  margin-top: $space-xxs;
   text-align: center;
 
   &.error {
-    color: #ff6b6b;
+    color: $color-danger;
   }
 
   &.hint {
-    color: #6c757d;
+    color: $color-on-surface;
   }
 }
 

@@ -4,8 +4,8 @@
     <div class="auth-actions">
       @if (!isLoggedIn) {
         <button routerLink="/login">Login</button>
-        <span>|</span>
-        <button routerLink="/signup">Sign Up</button>
+<!--        <span>|</span>-->
+        <button routerLink="/signup" class="signup">Sign Up</button>
       } @else {
         <button (click)="logout()">Logout</button>
       }
@@ -19,7 +19,7 @@
     } @else {
       @for (msg of messages; track msg._id) {
         <div [class]="'chat-message' + (msg.senderId?._id === currentUserId ? ' sent' : ' received')">
-          <div class="chat-author">{{ msg.senderId?.username || 'Unknown' }}</div>
+          <div class="chat-author">{{ msg.senderId?.username || '[deleted user]' }}</div>
           <div class="chat-content">{{ msg.content }}</div>
           <div class="chat-time">{{ msg.createdAt | date:'short' }}</div>
         </div>

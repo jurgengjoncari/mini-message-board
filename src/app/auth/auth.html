@@ -8,20 +8,23 @@
            placeholder="Username"
            required
     />
-    <input class="auth-input"
-           formControlName="password"
-           type="password"
-           placeholder="Password"
-           minlength="8"
-           required
-    />
 
     <div style="display: flex; flex-direction: column;">
-      <button class="auth-button" type="submit">{{mode === 'login' ? 'Login' : 'Sign up'}}</button>
-      <small [class]="errorMessage ? 'error' : 'hint'">
-        {{errorMessage || 'Password must be at least 8 characters long'}}
-      </small>
+      <input class="auth-input"
+             formControlName="password"
+             type="password"
+             placeholder="Password"
+             minlength="8"
+             required
+      />
+      @if (mode === 'signup') {
+        <small [class]="errorMessage ? 'error' : 'hint'">
+          {{errorMessage || 'Password must be at least 8 characters long'}}
+        </small>
+      }
     </div>
+
+    <button class="auth-button" type="submit">{{mode === 'login' ? 'Login' : 'Sign up'}}</button>
 
     <div class="auth-footer">
       @if (mode === 'login') {
