@@ -1,0 +1,104 @@
+dl li {
+  list-style-type: none;
+}
+
+form {
+  max-width: 85ch;
+}
+
+/* The good
+<form><fieldset>and <legend>Single-line text <input>s (e.g. type text, url, email...),
+except for <input type="search">. Multi-line <textarea>s Buttons (both <input> and <button>s) <label><output>
+*/
+
+button,
+input,
+select,
+input[type="file"]::-webkit-file-upload-button {
+  font-family: inherit;
+  letter-spacing: inherit;
+  font-size: 100%;
+  color: inherit;
+
+  //height: 2rem;
+  background: none;
+  border: 1px solid;
+  max-width: 85ch;
+}
+
+button, input[type="file"] {
+  width: fit-content;
+}
+
+label {
+  display: inline-block;
+  line-height: 44px;
+}
+
+/* The bad
+Checkboxes and radio buttons <input type="search">
+*/
+
+form ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+ul label {
+  position: relative;
+}
+
+input[type="checkbox"] {
+  /*appearance: checkbox;*/
+  -webkit-appearance: checkbox;
+}
+
+input[type="radio"] {
+  /*appearance: radio;*/
+  -webkit-appearance: radio;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  width: 1em;
+  height: 1em;
+  position: relative;
+  margin: 0 14px;
+}
+
+/* The ugly
+Elements involved in creating dropdown widgets,
+including <select>,
+<option>,
+<optgroup>and <datalist>. <input type="color">Date-related controls such as <input type="datetime-local"><input type="range"><input type="file"><progress>and <meter>
+*/
+/* select {
+    appearance: auto;
+    -webkit-appearance: none;
+} */
+
+.select-wrapper {
+  position: relative;
+}
+
+input[type=number] {
+  text-align: end;
+}
+
+input[type="color"] {
+  border: 0;
+  outline: 0;
+  padding: 0;
+  height: 44px;
+}
+
+input[type="file"] {
+  border: 0;
+  display: block;
+  height: auto;
+}
+
+input[type="range"] {
+  height: 2px;
+  padding: 0;
+  margin-block: 20px;
+}

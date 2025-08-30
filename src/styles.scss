@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "resetting";
 
 html {
   height: 100vh;
@@ -46,6 +47,7 @@ input {
   background-color: $color-background;
   color: $color;
   font-family: $font-family-base;
+  border: $border-width-none;
 
   &::placeholder {
     color: $color-muted;
@@ -55,11 +57,16 @@ input {
   &:disabled {
     filter: grayscale(100%);
     cursor: not-allowed;
+    background-color: $color-surface;
+    border-color: $color-muted;
+    border-width: $border-width-thin;
+    color: $color-muted;
   }
 }
 
 button {
   font-family: $font-family-base;
+  border: $border-width-none;
 
   &:not(:disabled) {
     cursor: pointer;
@@ -75,6 +82,7 @@ button {
     filter: grayscale(100%);
     cursor: not-allowed;
     color: $color-muted;
+    border-color: $color-muted;
     box-shadow: none;
   }
 }
