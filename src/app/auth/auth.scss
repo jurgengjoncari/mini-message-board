@@ -17,7 +17,7 @@
   width: 100%;
   max-width: 400px;
   box-shadow: $shadow-lg;
-  color: $color-on-surface;
+  color: $color;
   display: flex;
   flex-direction: column;
   gap: $space-md;
@@ -36,35 +36,22 @@
   border: none;
   border-radius: $radius-md;
   font-size: $font-size-md;
-  background: $color-surface;
-  color: $color-on-surface;
+  //background: $color-surface;
+  color: $color;
   outline: none;
   backdrop-filter: $frosty-glass;
-
-  &::placeholder {
-    color: $color-on-surface;
-  }
 }
 
 .auth-button {
-  background: linear-gradient(135deg, #007bff, $color-primary);
+  background: $color-primary;
   border: none;
   border-radius: $radius-md;
   padding: $space-sm;
   font-size: $font-size-md;
   font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.1s ease;
-  color: $color-on-primary;
 
-  &:hover {
-    background: linear-gradient(135deg, $color-primary, #00aaff);
-    transform: scale(1.02);
-  }
-
-  &:disabled {
-    filter: grayscale(1);
-    cursor: not-allowed;
+  &:not(:disabled) {
+    color: $color-on-primary;
   }
 }
 

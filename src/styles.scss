@@ -38,7 +38,43 @@ small {
   }
 
   &.hint {
-    color: $color-on-surface;
+    color: $color;
   }
 }
 
+input {
+  background-color: $color-background;
+  color: $color;
+  font-family: $font-family-base;
+
+  &::placeholder {
+    color: $color-muted;
+    font-family: $font-family-base;
+  }
+
+  &:disabled {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+  }
+}
+
+button {
+  font-family: $font-family-base;
+
+  &:not(:disabled) {
+    cursor: pointer;
+
+    &:hover {
+      background: $color-primary-hover;
+      transform: scale(1.05);
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+  }
+
+  &:disabled {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+    color: $color-muted;
+    box-shadow: none;
+  }
+}

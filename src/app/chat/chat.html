@@ -4,10 +4,9 @@
     <div class="auth-actions">
       @if (!isLoggedIn) {
         <button routerLink="/login">Login</button>
-<!--        <span>|</span>-->
         <button routerLink="/signup" class="signup">Sign Up</button>
       } @else {
-        <button (click)="logout()">Logout</button>
+        <button (click)="logout()" class="logout">Logout</button>
       }
     </div>
   </div>

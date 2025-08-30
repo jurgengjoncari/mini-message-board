@@ -1,16 +1,7 @@
 @use "sass:color";
 @use "../../variables" as *;
 
-// Variables
-//$primary: #4da6ff;
-$primary-hover: #1a75ff;
-//$message-bg: rgba(255, 255, 255, 0.08);
 $message-sent-bg: rgba($color-primary, 0.2);
-//$form-bg: rgba(15, 15, 15, 0.40);
-//$text-light: #f5f5f5;
-$text-muted: #bbb;
-//$border-radius: 20px;
-//$shadow: 0 6px 20px rgba(0,0,0,0.6);
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }
@@ -24,7 +15,7 @@ $text-muted: #bbb;
   height: 100vh;
   margin: 0 auto;
   font-family: sans-serif;
-  color: $color-on-surface;
+  color: $color;
 
   background-color: $color-surface;
   backdrop-filter: $frosty-glass;
@@ -69,6 +60,10 @@ $text-muted: #bbb;
           background-color: $color-on-primary;
           border: none;
         }
+
+        &.logout {
+          padding: $space-xs $space-md
+        }
       }
     }
   }
@@ -91,7 +86,7 @@ $text-muted: #bbb;
       box-shadow: $shadow-md;
       width: fit-content;
       max-width: 70%;
-      color: $color-on-surface;
+      color: $color;
       align-self: flex-start;
 
       .chat-author {
@@ -108,7 +103,7 @@ $text-muted: #bbb;
 
       .chat-time {
         font-size: $space-sm;
-        color: $text-muted;
+        color: $color-muted;
         text-align: right;
       }
 
@@ -168,44 +163,26 @@ $text-muted: #bbb;
     .chat-input {
       flex: 1;
       padding: $space-xs $space-sm;
-      border: $border-width-none $border-style-solid $color-on-surface;
-      background: $color-surface;
-      color: $color-on-surface;
+      border: $border-width-none $border-style-solid $color;
+      //background: $color-surface;
+      color: $color;
       border-radius: $radius-md;
       outline: none;
       font-size: $font-size-md;
       margin-right: $space-xs;
-      box-shadow: $shadow-md;
-
-      &::placeholder {
-        color: $text-muted;
-      }
-
-      &:disabled {
-        filter: grayscale(100%);
-        cursor: not-allowed;
-      }
+      //box-shadow: $shadow-md;
     }
 
     button {
       background: $color-primary;
-      color: $color-on-primary;
       border: none;
       border-radius: $radius-md;
       padding: $space-xs $space-md;
-      cursor: pointer;
       font-size: $font-size-md;
-      box-shadow: $shadow-md;
-      transition: background 0.2s ease, transform 0.1s ease;
 
-      &:not(:disabled):hover {
-        background: $primary-hover;
-        transform: scale(1.05);
-      }
-
-      &:disabled {
-        filter: grayscale(100%);
-        cursor: not-allowed;
+      &:not(:disabled) {
+        color: $color-on-primary;
+        box-shadow: $shadow-md;
       }
     }
   }

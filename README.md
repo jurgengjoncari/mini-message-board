@@ -21,6 +21,7 @@ This is the frontend, where I used Angular and SCSS.
 - **Error messages** are displayed inline under inputs
 - **Responsive design** – works well on mobile and desktop
 - **Animations** for smooth message rendering and transitions
+- **Accessible** - the colors contrasts conform to the level AAA. 
 
 ---
 
