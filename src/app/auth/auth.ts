@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 const baseApi = environment.apiUrl;
@@ -11,30 +10,40 @@ const baseApi = environment.apiUrl;
   selector: 'app-auth',
   imports: [
     FormsModule,
-    RouterLink,
     ReactiveFormsModule
   ],
   templateUrl: './auth.html',
   styleUrl: './auth.scss'
 })
 export class Auth {
-  mode: 'login' | 'signup' = 'login';
+  @Input() visible = false;
+  @Input() mode: 'login' | 'signup' = 'login';
+  @Output() visibleChange = new EventEmitter<boolean>();
+  @Output() modeChange = new EventEmitter<'login' | 'signup'>();
+  @Output() loginSuccess = new EventEmitter<void>();
+
   authForm: FormGroup;
   errorMessage: string | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute
+    private http: HttpClient
   ) {
-    this.route.data.subscribe(data => {
-      this.mode = data['mode'];
-    })
     this.authForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
+  }
+
+  toggleMode() {
+    this.mode = this.mode === 'login' ? 'signup' : 'login';
+    this.modeChange.emit(this.mode);
+    this.errorMessage = null;
+    this.authForm.reset();
+  }
+
+  close() {
+    this.visibleChange.emit(false);
   }
 
   onSubmit() {
@@ -42,20 +51,21 @@ export class Auth {
       this.http.post<{
         user: object;
         token: string
-      }>(
-        `${baseApi}/auth/${this.mode}`,
-        this.authForm.value
-      ).subscribe({
-        next: (res) => {
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('user', JSON.stringify(res.user));
-          this.router.navigate(['/']);
-        },
-        error: (err) => {
-          console.error(err);
-          this.errorMessage = err.error?.message || 'Authentication failed';
-        }
-      });
+      }>(`${baseApi}/auth/${this.mode}`, this.authForm.value)
+        .subscribe({
+          next: (res) => {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('user', JSON.stringify(res.user));
+            this.visible = false;
+            this.visibleChange.emit(false);
+            this.loginSuccess.emit();
+            // this.router.navigate(['/']);
+          },
+          error: (err) => {
+            console.error(err);
+            this.errorMessage = err.error?.message || 'Authentication failed';
+          }
+        });
     }
   }
 }

@@ -1,5 +1,5 @@
-@use "variables" as *;
-@use "resetting";
+@use "_variables" as *;
+@use "_forms";
 
 html {
   height: 100vh;
@@ -40,6 +40,16 @@ small {
 
   &.hint {
     color: $color;
+  }
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary-hover;
+    text-decoration: underline;
   }
 }
 

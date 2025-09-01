@@ -1,16 +1,16 @@
 import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {RouterLink} from "@angular/router";
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {Auth} from '../auth/auth';
 
 @Component({
   selector: 'app-chat',
   imports: [
     DatePipe,
     FormsModule,
-    RouterLink
+    Auth
   ],
   templateUrl: './chat.html',
   standalone: true,
@@ -26,6 +26,8 @@ export class Chat implements OnInit {
   @ViewChild('messagesContainer') messagesContainer?: ElementRef<HTMLDivElement>;
   errorMessage: string | null = null;
   loading: boolean = true;
+  authVisible = false;
+  authMode: 'login' | 'signup' = 'login';
 
   get currentUserId() {
     const user = localStorage.getItem('user');
@@ -69,6 +71,16 @@ export class Chat implements OnInit {
     });
   }
 
+  showLogin() {
+    this.authMode = 'login';
+    this.authVisible = true;
+  }
+
+  showSignup() {
+    this.authMode = 'signup';
+    this.authVisible = true;
+  }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -78,5 +90,10 @@ export class Chat implements OnInit {
   scrollToBottom() {
     const el = this.messagesContainer?.nativeElement;
     if (el) el.scrollTop = el.scrollHeight;
+  }
+
+  onLoginSuccess() {
+    this.token = localStorage.getItem('token');
+    this.isLoggedIn = !!this.token;
   }
 }

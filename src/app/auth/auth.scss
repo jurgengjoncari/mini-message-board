@@ -1,12 +1,19 @@
-@use "../../variables" as *;
+@use "../../_variables" as *;
 
 .auth-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: black;
+  background: $color-surface;
+  backdrop-filter: $frosty-glass;
   font-family: $font-family-base;
+  z-index: 1000;
 }
 
 .auth-card {
@@ -59,13 +66,4 @@
   text-align: center;
   margin-top: 1rem;
   font-size: 0.9rem;
-
-  a {
-    color: $color-information;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 }

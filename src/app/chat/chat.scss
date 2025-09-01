@@ -1,5 +1,5 @@
 @use "sass:color";
-@use "../../variables" as *;
+@use "../../_variables" as *;
 
 $message-sent-bg: rgba($color-primary, 0.2);
 
@@ -178,6 +178,12 @@ $message-sent-bg: rgba($color-primary, 0.2);
         color: $color-on-primary;
         box-shadow: $shadow-md;
       }
+    }
+
+    .auth-text {
+      padding: $space-xs $space-sm;
+      display: flex;
+      justify-content: center;
     }
   }
 }

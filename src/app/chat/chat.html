@@ -3,8 +3,8 @@
     <h3 class="title">Mini Message Board</h3>
     <div class="auth-actions">
       @if (!isLoggedIn) {
-        <button routerLink="/login">Login</button>
-        <button routerLink="/signup" class="signup">Sign Up</button>
+<!--        <button (click)="showLogin()">Login</button>-->
+<!--        <button (click)="showSignup()" class="signup">Sign Up</button>-->
       } @else {
         <button (click)="logout()" class="logout">Logout</button>
       }
@@ -26,21 +26,33 @@
     }
   </div>
   <form class="chat-form">
-    <div style="display: flex">
-      <input
-        type="text"
-        [(ngModel)]="newMessage"
-        name="message"
-        (keyup.enter)="sendMessage()"
-        [placeholder]="isLoggedIn ? 'Type your message here...' : 'Please log in to send messages'"
-        class="chat-input"
-        required
-        [disabled]="!isLoggedIn || loading"
-      />
-      <button type="button" (click)="sendMessage()" [disabled]="!isLoggedIn || loading || !newMessage.trim()">Send</button>
-    </div>
+      @if (isLoggedIn) {
+        <div style="display: flex">
+          <input
+            type="text"
+            [(ngModel)]="newMessage"
+            name="message"
+            (keyup.enter)="sendMessage()"
+            placeholder="Type your message here..."
+            class="chat-input"
+            required
+            [disabled]="!isLoggedIn || loading"
+          />
+          <button type="button" (click)="sendMessage()" [disabled]="!isLoggedIn || loading || !newMessage.trim()">Send</button>
+        </div>
+      } @else {
+        <div class="auth-text">
+          <span>Please <a href="#" (click)="$event.preventDefault(); showLogin()">log in</a> to send messages</span>
+        </div>
+      }
     @if (errorMessage) {
       <div class="error">{{errorMessage}}</div>
     }
   </form>
 </div>
+<app-auth
+  [(visible)]="authVisible"
+  [(mode)]="authMode"
+  (loginSuccess)="onLoginSuccess()"
+>
+</app-auth>
