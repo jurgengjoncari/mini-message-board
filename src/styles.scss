@@ -2,7 +2,7 @@
 @use "_forms";
 
 html {
-  height: 100vh;
+  height: 100dvh;
   background-color: $color-background;
 
   body {
@@ -54,7 +54,7 @@ a {
 }
 
 input {
-  background-color: $color-background;
+  background-color: $color-surface-solid;
   color: $color;
   font-family: $font-family-base;
   border: $border-width-none;
