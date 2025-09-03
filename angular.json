@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mini-message-board-fe": {
+    "mini-message-board": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -27,7 +27,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "outputPath": "dist/mini-message-board-fe",
+            "outputPath": "dist/mini-message-board",
             "baseHref": "/mini-message-board/"
           },
           "configurations": {
@@ -58,10 +58,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mini-message-board-fe:build:production"
+              "buildTarget": "mini-message-board:build:production"
             },
             "development": {
-              "buildTarget": "mini-message-board-fe:build:development"
+              "buildTarget": "mini-message-board:build:development"
             }
           },
           "defaultConfiguration": "development"
