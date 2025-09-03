@@ -31,12 +31,6 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -94,14 +88,7 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "configurations": {
-            "production": {
-              "baseHref": "/mini-message-board-fe/",
-              "buildTarget": "mini-message-board-fe:build:production"
-            }
-          },
-          "defaultConfiguration": "production"
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
