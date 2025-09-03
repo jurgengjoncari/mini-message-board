@@ -88,7 +88,14 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "configurations": {
+            "production": {
+              "baseHref": "/mini-message-board-fe/",
+              "buildTarget": "mini-message-board-fe:build:production"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
