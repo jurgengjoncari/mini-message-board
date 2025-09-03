@@ -2,7 +2,9 @@
 @use "_forms";
 
 html {
-  height: 100dvh;
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(save-area-inset-bottom);
   background-color: $color-background;
 
   body {
