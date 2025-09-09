@@ -21,6 +21,10 @@ $message-sent-bg: rgba($color-primary, 0.2);
     color: $color-on-primary;
     margin: $space-none;
     padding: $space-xs;
+
+    h3 {
+      font-size: $font-size-lg;
+    }
   }
 
   .auth-actions {
