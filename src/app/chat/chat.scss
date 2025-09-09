@@ -61,7 +61,7 @@ $message-sent-bg: rgba($color-primary, 0.2);
         }
 
         &.signup {
-          color: $color-primary;
+          color: $color-primary-text;
           background-color: $color-on-primary;
           border: none;
         }
@@ -82,44 +82,64 @@ $message-sent-bg: rgba($color-primary, 0.2);
     scrollbar-width: thin;
     padding: $space-md $space-md max(env(safe-area-inset-bottom), 4.5rem);
 
+    .date-separator {
+      text-align: center;
+      font-size: $font-size-xs;
+      color: $color-muted;
+    }
+
     .chat-message {
-      background: $color-surface;
-      backdrop-filter: $frosty-glass;
-      -webkit-backdrop-filter: $frosty-glass;
-      padding: $space-sm $space-md;
-      border-radius: $radius-md;
-      box-shadow: $shadow-md;
-      width: fit-content;
-      max-width: 70%;
-      color: $color;
-      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+
+      //.message-container {
+      //  width: fit-content;
+      //}
 
       .chat-author {
-        font-weight: bold;
         margin-bottom: $space-xxs;
         overflow: auto;
         text-overflow: ellipsis;
-        //color: lighten($primary, 20%);
+        color: $color-muted;
+        font-size: $font-size-xs;
       }
 
       .chat-content {
+        background: $color-surface;
+        backdrop-filter: $frosty-glass;
+        -webkit-backdrop-filter: $frosty-glass;
+        padding: $space-sm $space-md;
+        border-radius: $radius-lg;
+        box-shadow: $shadow-md;
+        width: fit-content;
+        max-width: 70%;
+        color: $color;
+        align-self: flex-start;
         margin-bottom: $space-xxs;
       }
 
       .chat-time {
-        font-size: $space-sm;
+        font-size: $font-size-xs;
         color: $color-muted;
         text-align: right;
       }
 
       &.sent {
-        align-self: flex-end;
-        background: $message-sent-bg;
-        border-bottom-right-radius: 0;
+        .chat-author {
+          text-align: end;
+        }
+
+        .chat-content {
+          background: $message-sent-bg;
+          border-bottom-right-radius: 0;
+          align-self: end;
+        }
       }
 
       &.received {
-        border-bottom-left-radius: 0;
+        .chat-content {
+          border-bottom-left-radius: 0;
+        }
       }
 
       &.loading {

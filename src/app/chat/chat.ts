@@ -1,14 +1,13 @@
 import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
-import {DatePipe} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Auth} from '../auth/auth';
+import {groupByDate} from '../_utils/helpers';
 
 @Component({
   selector: 'app-chat',
   imports: [
-    DatePipe,
     FormsModule,
     Auth
   ],
@@ -41,7 +40,7 @@ export class Chat implements OnInit {
   getMessages() {
     this.http.get<any[]>(`${this.baseUrl}/`).subscribe({
       next: (data) => {
-        this.messages = data;
+        this.messages = groupByDate(data);
         setTimeout(() => this.scrollToBottom(), 0);
         this.loading = false;
       },

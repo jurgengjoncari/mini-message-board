@@ -16,12 +16,15 @@
         <div class="chat-message loading"></div>
       }
     } @else {
-      @for (msg of messages; track msg._id) {
-        <div [class]="'chat-message' + (msg.senderId?._id === currentUserId ? ' sent' : ' received')">
-          <div class="chat-author">{{ msg.senderId?.username || '[deleted user]' }}</div>
-          <div class="chat-content">{{ msg.content }}</div>
-          <div class="chat-time">{{ msg.createdAt | date:'short' }}</div>
-        </div>
+      @for (group of messages; track group.key) {
+        <div class="date-separator">{{ group.key }}</div>
+        @for (msg of group.value; track msg._id) {
+          <div [class]="'chat-message' + (msg.senderId?._id === currentUserId ? ' sent' : ' received')">
+            <div class="chat-author">{{ msg.senderId?.username || '[deleted user]' }}</div>
+            <div class="chat-content">{{ msg.content }}</div>
+<!--              <div class="chat-time">{{ msg.createdAt | date:'HH:mm' }}</div>-->
+          </div>
+        }
       }
     }
   </div>
