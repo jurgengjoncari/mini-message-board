@@ -72,7 +72,7 @@ $message-sent-bg: rgba($color-primary, 0.2);
   margin: 0 auto;
   font-family: sans-serif;
   color: $color;
-  padding-top: max(env(safe-area-inset-top) + 3.5rem, 3.5rem);
+  padding-top: max(env(safe-area-inset-top) + 3.125rem, 3.125rem);
 
   background-color: $color-surface;
   backdrop-filter: $frosty-glass;

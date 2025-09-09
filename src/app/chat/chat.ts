@@ -3,13 +3,14 @@ import {FormsModule} from "@angular/forms";
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Auth} from '../auth/auth';
-import {groupByDate} from '../_utils/helpers';
+import {GroupByDatePipe} from '../_pipes/group-by-date-pipe';
 
 @Component({
   selector: 'app-chat',
   imports: [
     FormsModule,
-    Auth
+    Auth,
+    GroupByDatePipe
   ],
   templateUrl: './chat.html',
   standalone: true,
@@ -40,7 +41,7 @@ export class Chat implements OnInit {
   getMessages() {
     this.http.get<any[]>(`${this.baseUrl}/`).subscribe({
       next: (data) => {
-        this.messages = groupByDate(data);
+        this.messages = data;
         setTimeout(() => this.scrollToBottom(), 0);
         this.loading = false;
       },
