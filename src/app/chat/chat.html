@@ -1,15 +1,15 @@
-<div class="chat-container">
-  <div class="top-bar">
-    <h3 class="title">Mini Message Board</h3>
-    <div class="auth-actions">
-      @if (!isLoggedIn) {
-<!--        <button (click)="showLogin()">Login</button>-->
-<!--        <button (click)="showSignup()" class="signup">Sign Up</button>-->
-      } @else {
-        <button (click)="logout()" class="logout">Logout</button>
-      }
-    </div>
+<div class="top-bar">
+  <h3 class="title">Mini Message Board</h3>
+  <div class="auth-actions">
+    @if (!isLoggedIn) {
+      <!--        <button (click)="showLogin()">Login</button>-->
+        <!--        <button (click)="showSignup()" class="signup">Sign Up</button>-->
+    } @else {
+      <button (click)="logout()" class="logout">Logout</button>
+    }
   </div>
+</div>
+<div class="chat-container">
   <div class="messages" #messagesContainer>
     @if (loading) {
       @for (i of [1, 2, 3, 4, 5]; track i) {
