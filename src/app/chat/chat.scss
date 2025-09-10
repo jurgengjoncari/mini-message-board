@@ -205,7 +205,7 @@ $message-sent-bg: rgba($color-primary, 0.2);
       }
 
       &:active {
-        background-color: rgba(0, 0, 0, 0.1);
+        color: $color-danger
       }
     }
 
