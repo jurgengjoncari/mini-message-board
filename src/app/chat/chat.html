@@ -9,7 +9,7 @@
 <!--    }-->
 <!--  </div>-->
 <!--</div>-->
-<div class="chat-container">
+<div class="chat-container surface">
   <div class="messages" #messagesContainer>
     @if (loading) {
       @for (i of [1, 2, 3, 4, 5]; track i) {
@@ -21,15 +21,40 @@
         @for (msg of group.value; track msg._id) {
           <div [class]="'chat-message' + (msg.senderId?._id === currentUserId ? ' sent' : ' received')">
             <div class="chat-author">{{ msg.senderId?.username || '[deleted user]' }}</div>
-            <div class="chat-content">{{ msg.content }}</div>
+            <div class="chat-content surface">{{ msg.content }}</div>
 <!--              <div class="chat-time">{{ msg.createdAt | date:'HH:mm' }}</div>-->
           </div>
         }
       }
     }
   </div>
-  <form class="chat-form">
-    <div style="display: flex">
+  <div class="form-container surface">
+    <form>
+      @if (isLoggedIn) {
+        <button
+          type="button"
+          (click)="logout()"
+          class="logout-button surface"
+          title="Logout">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <!-- The incomplete circle (arc) -->
+            <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
+
+            <!-- The vertical line -->
+            <line x1="12" y1="2" x2="12" y2="12"/>
+          </svg>
+        </button>
+      }
       <input
         #messageInput
         type="text"
@@ -42,12 +67,19 @@
         required
         [disabled]="loading"
       />
-      <button type="button" (click)="sendMessage()" [disabled]="!isLoggedIn || loading || !newMessage.trim()">Send</button>
-    </div>
+      <button
+        type="button"
+        class="send-button primary"
+        (click)="sendMessage()"
+        [disabled]="!isLoggedIn || loading || !newMessage.trim()"
+      >
+        Send
+      </button>
+    </form>
 <!--    @if (errorMessage) {-->
 <!--      <div class="error">{{errorMessage}}</div>-->
 <!--    }-->
-  </form>
+  </div>
 </div>
 <app-auth
   [(visible)]="authVisible"

@@ -84,7 +84,10 @@ button {
     cursor: pointer;
 
     &:hover {
-      background: $color-primary-hover;
+
+      &.primary {
+        background: $color-primary-hover;
+      }
       transform: scale(1.05);
       transition: background 0.2s ease, transform 0.1s ease;
     }
@@ -97,4 +100,12 @@ button {
     border-color: $color-muted;
     box-shadow: none;
   }
+}
+
+.surface {
+  background-color: $color-surface;
+  backdrop-filter: $frosty-glass;
+  -webkit-backdrop-filter: $frosty-glass;
+  box-shadow: $shadow-md;
+  color: $color;
 }

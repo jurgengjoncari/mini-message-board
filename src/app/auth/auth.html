@@ -1,6 +1,6 @@
 @if (visible) {
-  <div class="auth-container" (click)="close()">
-    <form class="auth-card"
+  <div class="auth-container surface" (click)="close()">
+    <form class="auth-card surface"
           [formGroup]="authForm"
           (ngSubmit)="onSubmit()"
           (click)="$event.stopPropagation()"

@@ -74,12 +74,6 @@ $message-sent-bg: rgba($color-primary, 0.2);
   color: $color;
   //padding-top: max(env(safe-area-inset-top) + 3.125rem, 3.125rem);
 
-  background-color: $color-surface;
-  backdrop-filter: $frosty-glass;
-  -webkit-backdrop-filter: $frosty-glass;
-  //border-radius: $radius-lg;
-  box-shadow: $shadow-md;
-
   .messages {
     flex: 1;
     overflow-y: auto;
@@ -112,12 +106,8 @@ $message-sent-bg: rgba($color-primary, 0.2);
       }
 
       .chat-content {
-        background: $color-surface;
-        backdrop-filter: $frosty-glass;
-        -webkit-backdrop-filter: $frosty-glass;
         padding: $space-sm $space-md;
         border-radius: $radius-lg;
-        box-shadow: $shadow-md;
         width: fit-content;
         max-width: 70%;
         color: $color;
@@ -178,7 +168,7 @@ $message-sent-bg: rgba($color-primary, 0.2);
     }
   }
 
-  .chat-form {
+  .form-container {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -186,9 +176,38 @@ $message-sent-bg: rgba($color-primary, 0.2);
     flex-direction: column;
     padding: $space-sm $space-sm max(env(safe-area-inset-bottom), $space-sm);
     box-shadow: $shadow-lg;
-    background: $color-surface;
-    backdrop-filter: $frosty-glass;
-    -webkit-backdrop-filter: $frosty-glass;
+
+    form {
+      display: flex;
+      align-items: center;
+      gap: $space-xs;
+    }
+
+    .logout-button {
+      border: none;
+      padding: $space-xs;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: $color;
+      border-radius: 50%;
+
+      svg {
+        width: $font-size-md;
+        height: $font-size-md;
+      }
+
+      &:hover {
+        color: $color-danger;
+      }
+
+      &:active {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
 
     .chat-input {
       flex: 1;
@@ -197,10 +216,9 @@ $message-sent-bg: rgba($color-primary, 0.2);
       border-radius: $radius-md;
       outline: none;
       font-size: $font-size-md;
-      margin-right: $space-xs;
     }
 
-    button {
+    .send-button {
       background: $color-primary;
       border-radius: $radius-md;
       padding: $space-xs $space-md;
