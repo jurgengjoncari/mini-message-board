@@ -8,56 +8,56 @@ $message-sent-bg: rgba($color-primary, 0.2);
   100% { background-position: -200% 0; }
 }
 
-.top-bar {
-  background: $color-primary;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: max(env(safe-area-inset-top), $space-xs) $space-xs $space-xs;
-  position: relative;
-  z-index: 100;
-
-  .title {
-    color: $color-on-primary;
-    margin: $space-none;
-    padding: $space-xs;
-
-    h3 {
-      font-size: $font-size-lg;
-    }
-  }
-
-  .auth-actions {
-    display: flex;
-    flex-direction: row;
-    gap: $space-xs;
-
-    button {
-      background: transparent;
-      color: $color-on-primary;
-      border: $border-width-thin $border-style-solid $color-on-primary;
-      border-radius: $radius-md;
-      cursor: pointer;
-      font-size: $font-size-md;
-      transition: background 0.2s ease, transform 0.1s ease;
-      padding: $space-xs;
-
-      &:hover {
-        background-color: color.scale($color-primary, $lightness: 20%);
-      }
-
-      &.signup {
-        color: $color-primary-text;
-        background-color: $color-on-primary;
-        border: none;
-      }
-
-      &.logout {
-        padding: $space-xs $space-md
-      }
-    }
-  }
-}
+//.top-bar {
+//  background: $color-primary;
+//  display: flex;
+//  justify-content: space-between;
+//  align-items: center;
+//  padding: max(env(safe-area-inset-top), $space-xs) $space-xs $space-xs;
+//  position: relative;
+//  z-index: 100;
+//
+//  .title {
+//    color: $color-on-primary;
+//    margin: $space-none;
+//    padding: $space-xs;
+//
+//    h3 {
+//      font-size: $font-size-lg;
+//    }
+//  }
+//
+//  .auth-actions {
+//    display: flex;
+//    flex-direction: row;
+//    gap: $space-xs;
+//
+//    button {
+//      background: transparent;
+//      color: $color-on-primary;
+//      border: $border-width-thin $border-style-solid $color-on-primary;
+//      border-radius: $radius-md;
+//      cursor: pointer;
+//      font-size: $font-size-md;
+//      transition: background 0.2s ease, transform 0.1s ease;
+//      padding: $space-xs;
+//
+//      &:hover {
+//        background-color: color.scale($color-primary, $lightness: 20%);
+//      }
+//
+//      &.signup {
+//        color: $color-primary-text;
+//        background-color: $color-on-primary;
+//        border: none;
+//      }
+//
+//      &.logout {
+//        padding: $space-xs $space-md
+//      }
+//    }
+//  }
+//}
 
 .chat-container {
   display: flex;
@@ -72,7 +72,7 @@ $message-sent-bg: rgba($color-primary, 0.2);
   margin: 0 auto;
   font-family: sans-serif;
   color: $color;
-  padding-top: max(env(safe-area-inset-top) + 3.125rem, 3.125rem);
+  //padding-top: max(env(safe-area-inset-top) + 3.125rem, 3.125rem);
 
   background-color: $color-surface;
   backdrop-filter: $frosty-glass;

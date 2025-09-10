@@ -1,14 +1,14 @@
-<div class="top-bar">
-  <h3 class="title">Mini Message Board</h3>
-  <div class="auth-actions">
-    @if (!isLoggedIn) {
-      <button (click)="showLogin()">Login</button>
-      <button (click)="showSignup()" class="signup">Sign Up</button>
-    } @else {
-      <button (click)="logout()" class="logout">Logout</button>
-    }
-  </div>
-</div>
+<!--<div class="top-bar">-->
+<!--  <h3 class="title">Mini Message Board</h3>-->
+<!--  <div class="auth-actions">-->
+<!--    @if (!isLoggedIn) {-->
+<!--      <button (click)="showLogin()">Login</button>-->
+<!--      <button (click)="showSignup()" class="signup">Sign Up</button>-->
+<!--    } @else {-->
+<!--      <button (click)="logout()" class="logout">Logout</button>-->
+<!--    }-->
+<!--  </div>-->
+<!--</div>-->
 <div class="chat-container">
   <div class="messages" #messagesContainer>
     @if (loading) {
@@ -29,28 +29,24 @@
     }
   </div>
   <form class="chat-form">
-      @if (isLoggedIn) {
-        <div style="display: flex">
-          <input
-            type="text"
-            [(ngModel)]="newMessage"
-            name="message"
-            (keyup.enter)="sendMessage()"
-            placeholder="Type your message here..."
-            class="chat-input"
-            required
-            [disabled]="!isLoggedIn || loading"
-          />
-          <button type="button" (click)="sendMessage()" [disabled]="!isLoggedIn || loading || !newMessage.trim()">Send</button>
-        </div>
-      } @else {
-        <div class="auth-text">
-          <span>Please <a href="#" (click)="$event.preventDefault(); showLogin()">log in</a> to send messages</span>
-        </div>
-      }
-    @if (errorMessage) {
-      <div class="error">{{errorMessage}}</div>
-    }
+    <div style="display: flex">
+      <input
+        #messageInput
+        type="text"
+        [(ngModel)]="newMessage"
+        name="message"
+        (keyup.enter)="sendMessage()"
+        (focus)="onInputFocus()"
+        placeholder="Type your message here..."
+        class="chat-input"
+        required
+        [disabled]="loading"
+      />
+      <button type="button" (click)="sendMessage()" [disabled]="!isLoggedIn || loading || !newMessage.trim()">Send</button>
+    </div>
+<!--    @if (errorMessage) {-->
+<!--      <div class="error">{{errorMessage}}</div>-->
+<!--    }-->
   </form>
 </div>
 <app-auth

@@ -24,6 +24,7 @@ export class Chat implements OnInit {
   token = localStorage.getItem('token');
   isLoggedIn = !!this.token;
   @ViewChild('messagesContainer') messagesContainer?: ElementRef<HTMLDivElement>;
+  @ViewChild('messageInput') messageInput?: ElementRef<HTMLInputElement>;
   errorMessage: string | null = null;
   loading: boolean = true;
   authVisible = false;
@@ -95,5 +96,14 @@ export class Chat implements OnInit {
   onLoginSuccess() {
     this.token = localStorage.getItem('token');
     this.isLoggedIn = !!this.token;
+    setTimeout(() => {
+      this.messageInput?.nativeElement.focus();
+    }, 0);
+  }
+
+  onInputFocus() {
+    if (!this.isLoggedIn) {
+      this.showLogin();
+    }
   }
 }
