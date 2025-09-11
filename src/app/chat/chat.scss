@@ -193,7 +193,7 @@ $message-sent-bg: rgba($color-primary, 0.2);
       justify-content: center;
 
       color: $color;
-      border-radius: 50%;
+      border-radius: $radius-round;
 
       svg {
         width: $font-size-md;
@@ -220,13 +220,21 @@ $message-sent-bg: rgba($color-primary, 0.2);
 
     .send-button {
       background: $color-primary;
-      border-radius: $radius-md;
-      padding: $space-xs $space-md;
+      border-radius: $radius-round;
+      padding: $space-xs;
       font-size: $font-size-md;
+
+      display: flex;
+      align-items: center;
 
       &:not(:disabled) {
         color: $color-on-primary;
         box-shadow: $shadow-md;
+      }
+
+      svg {
+        width: $font-size-md;
+        height: $font-size-md;
       }
     }
 

@@ -60,6 +60,7 @@ input {
   color: $color;
   font-family: $font-family-base;
   border: $border-width-none;
+  box-shadow: inset $shadow-sm;
 
   &::placeholder {
     color: $color-muted;
