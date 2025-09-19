@@ -2,6 +2,12 @@
 @use "../../_variables" as *;
 
 $message-sent-bg: rgba($color-primary, 0.2);
+$form-container-padding-top: $space-sm;
+$form-container-padding-bottom: max(env(safe-area-inset-bottom), $space-sm);
+$messages-gap: $space-md;
+$input-font-size: $font-size-md;
+$input-padding: $space-xs;
+$messages-padding-bottom: calc($form-container-padding-top + $form-container-padding-bottom + 2 * $input-padding + $input-font-size + $messages-gap);
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }
@@ -79,9 +85,9 @@ $message-sent-bg: rgba($color-primary, 0.2);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: $space-sm;
+    gap: $messages-gap;
     scrollbar-width: thin;
-    padding: $space-md $space-md max(env(safe-area-inset-bottom), 4.5rem);
+    padding: $space-md $space-md max(env(safe-area-inset-bottom), $messages-padding-bottom);
 
     .date-separator {
       text-align: center;
@@ -107,7 +113,7 @@ $message-sent-bg: rgba($color-primary, 0.2);
 
       .chat-content {
         padding: $space-sm $space-md;
-        border-radius: $radius-lg;
+        border-radius: $radius-md;
         width: fit-content;
         max-width: 70%;
         color: $color;
@@ -174,13 +180,13 @@ $message-sent-bg: rgba($color-primary, 0.2);
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: $space-sm $space-sm max(env(safe-area-inset-bottom), $space-sm);
+    padding: $form-container-padding-top $space-sm $form-container-padding-bottom;
     box-shadow: $shadow-lg;
 
     form {
       display: flex;
       align-items: center;
-      gap: $space-xs;
+      gap: $space-sm;
     }
 
     .logout-button {
@@ -211,11 +217,11 @@ $message-sent-bg: rgba($color-primary, 0.2);
 
     .chat-input {
       flex: 1;
-      padding: $space-xs $space-sm;
+      padding: $input-padding $space-sm;
       color: $color;
-      border-radius: $radius-md;
+      border-radius: $radius-s;
       outline: none;
-      font-size: $font-size-md;
+      font-size: $input-font-size;
     }
 
     .send-button {
