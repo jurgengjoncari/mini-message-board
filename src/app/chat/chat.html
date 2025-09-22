@@ -19,7 +19,7 @@
       @for (group of messages | groupByDate; track group.key) {
         <div class="date-separator">{{ group.key }}</div>
         @for (msg of group.value; track msg._id) {
-          <div [class]="'chat-message' + (msg.senderId?._id === currentUser?.id ? ' sent' : ' received')">
+          <div [class]="'chat-message' + (msg.senderId?._id === currentUser?._id ? ' sent' : ' received')">
             <div class="avatar">
               <img [src]="msg.senderId?.profilePicture || '/default-avatar.jpg'"
                    [alt]="msg.senderId && getAuthor(msg.senderId) || 'User'"
@@ -104,7 +104,7 @@
       </button>
     </form>
     <footer class="footer">
-      <a href="https://github.com/jurgengjoncari/mini_message_board"
+      <a href="https://github.com/jurgengjoncari/mini-message-board"
          target="_blank"
          rel="noopener"
          class="github-link">

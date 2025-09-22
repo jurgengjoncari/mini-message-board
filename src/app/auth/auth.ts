@@ -96,7 +96,7 @@ export class Auth implements OnInit, AfterViewChecked {
             // this.router.navigate(['/']);
           },
           error: (err) => {
-            console.error(err);
+            console.error();
             this.errorMessage = err.error?.message || 'Authentication failed';
           }
         });
