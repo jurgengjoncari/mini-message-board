@@ -4,13 +4,23 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Auth} from '../auth/auth';
 import {GroupByDatePipe} from '../_pipes/group-by-date-pipe';
+import {DatePipe} from '@angular/common';
+
+interface Author {
+  displayName?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  username?: string;
+}
 
 @Component({
   selector: 'app-chat',
   imports: [
     FormsModule,
     Auth,
-    GroupByDatePipe
+    GroupByDatePipe,
+    DatePipe
   ],
   templateUrl: './chat.html',
   standalone: true,
@@ -21,7 +31,7 @@ export class Chat implements OnInit {
   messages: any[] = [];
   private http = inject(HttpClient);
   newMessage: string = '';
-  token = localStorage.getItem('token');
+  // token = localStorage.getItem('token');
   isLoggedIn = !!this.token;
   @ViewChild('messagesContainer') messagesContainer?: ElementRef<HTMLDivElement>;
   @ViewChild('messageInput') messageInput?: ElementRef<HTMLInputElement>;
@@ -30,9 +40,14 @@ export class Chat implements OnInit {
   authVisible = false;
   authMode: 'login' | 'signup' = 'login';
 
-  get currentUserId() {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user)._id : null;
+  get currentUser() {
+    const match = document.cookie.match(new RegExp('(^| )user=([^;]+)'));
+    return match ? JSON.parse(decodeURIComponent(match[2])) : null;
+  }
+
+  get token() {
+    const match = document.cookie.match(new RegExp('(^| )jwt=([^;]+)'));
+    return match ? match[2] : null;
   }
 
   ngOnInit() {
@@ -72,6 +87,13 @@ export class Chat implements OnInit {
     });
   }
 
+  getAuthor({displayName, email, firstName, lastName, username}: Author) {
+    return displayName
+      || firstName && lastName && (firstName + ' ' + lastName)
+      || username
+      || email;
+  }
+
   showLogin() {
     this.authMode = 'login';
     this.authVisible = true;
@@ -83,8 +105,8 @@ export class Chat implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    document.cookie = 'jwt=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
     this.isLoggedIn = false;
   }
 
@@ -94,11 +116,18 @@ export class Chat implements OnInit {
   }
 
   onLoginSuccess() {
-    this.token = localStorage.getItem('token');
+    // this.token = localStorage.getItem('token');
     this.isLoggedIn = !!this.token;
     setTimeout(() => {
       this.messageInput?.nativeElement.focus();
     }, 0);
+  }
+
+  onImgError(event: Event) {
+    const img = event.target as HTMLImageElement;
+    if (img) {
+      img.src = '/default-avatar.jpg';
+    }
   }
 
   onInputFocus() {

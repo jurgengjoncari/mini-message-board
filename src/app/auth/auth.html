@@ -5,43 +5,45 @@
           (ngSubmit)="onSubmit()"
           (click)="$event.stopPropagation()"
     >
-      <div class="auth-title">{{mode === 'login' ? 'Login' : 'Sign up'}}</div>
+      <div class="auth-title">Connect</div>
 
-      <input class="auth-input"
-             formControlName="username"
-             type="text"
-             placeholder="Username"
-             autofocus
-      />
+      <div id="googleBtn" style="width: 100%"></div>
 
-      <div style="display: flex; flex-direction: column;">
-        <input class="auth-input"
-               formControlName="password"
-               type="password"
-               placeholder="Password"
-        />
-        @if (mode === 'signup') {
-          <small [class]="errorMessage ? 'error' : 'hint'">
-            {{errorMessage || 'Password must be at least 8 characters long'}}
-          </small>
-        }
-      </div>
+<!--      <input class="auth-input"-->
+<!--             formControlName="username"-->
+<!--             type="text"-->
+<!--             placeholder="Username"-->
+<!--             autofocus-->
+<!--      />-->
 
-      <button class="auth-button"
-              type="submit"
-              [disabled]="authForm.invalid"
-      >
-        {{mode === 'login' ? 'Login' : 'Sign up'}}
-      </button>
+<!--      <div style="display: flex; flex-direction: column;">-->
+<!--        <input class="auth-input"-->
+<!--               formControlName="password"-->
+<!--               type="password"-->
+<!--               placeholder="Password"-->
+<!--        />-->
+<!--        @if (mode === 'signup') {-->
+<!--          <small [class]="errorMessage ? 'error' : 'hint'">-->
+<!--            {{errorMessage || 'Password must be at least 8 characters long'}}-->
+<!--          </small>-->
+<!--        }-->
+<!--      </div>-->
 
-      <div class="auth-footer">
-        <span>
-          {{ mode === 'login' ? "Don't have an account?" : "Already have an account?" }}
-          <a href="#" (click)="$event.preventDefault(); toggleMode()">
-            {{ mode === 'login' ? 'Sign Up' : 'Log In' }}
-          </a>
-        </span>
-      </div>
+<!--      <button class="auth-button"-->
+<!--              type="submit"-->
+<!--              [disabled]="authForm.invalid"-->
+<!--      >-->
+<!--        {{mode === 'login' ? 'Login' : 'Sign up'}}-->
+<!--      </button>-->
+
+<!--      <div class="auth-footer">-->
+<!--        <span>-->
+<!--          {{ mode === 'login' ? "Don't have an account?" : "Already have an account?" }}-->
+<!--          <a href="#" (click)="$event.preventDefault(); toggleMode()">-->
+<!--            {{ mode === 'login' ? 'Sign Up' : 'Log In' }}-->
+<!--          </a>-->
+<!--        </span>-->
+<!--      </div>-->
     </form>
   </div>
 }

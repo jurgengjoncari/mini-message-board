@@ -2,12 +2,13 @@
 @use "../../_variables" as *;
 
 $message-sent-bg: rgba($color-primary, 0.2);
-$form-container-padding-top: $space-sm;
-$form-container-padding-bottom: max(env(safe-area-inset-bottom), $space-sm);
 $messages-gap: $space-md;
+$form-padding: $space-sm;
 $input-font-size: $font-size-md;
 $input-padding: $space-xs;
-$messages-padding-bottom: calc($form-container-padding-top + $form-container-padding-bottom + 2 * $input-padding + $input-font-size + $messages-gap);
+$footer-font-size: $font-size-xs;
+$footer-padding-bottom: max(env(safe-area-inset-bottom), $space-xxs);
+$messages-padding-bottom: calc(2 * $form-padding + 2 * $input-padding + $input-font-size + $messages-gap + $footer-padding-bottom + $footer-font-size);
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }
@@ -87,7 +88,7 @@ $messages-padding-bottom: calc($form-container-padding-top + $form-container-pad
     flex-direction: column;
     gap: $messages-gap;
     scrollbar-width: thin;
-    padding: $space-md $space-md max(env(safe-area-inset-bottom), $messages-padding-bottom);
+    padding: $space-md $space-sm max(env(safe-area-inset-bottom), $messages-padding-bottom);
 
     .date-separator {
       text-align: center;
@@ -97,51 +98,77 @@ $messages-padding-bottom: calc($form-container-padding-top + $form-container-pad
 
     .chat-message {
       display: flex;
-      flex-direction: column;
+      gap: $space-xs;
 
-      //.message-container {
-      //  width: fit-content;
-      //}
+      .avatar {
+        width: $space-lg;
+        height: $space-lg;
+        border-radius: $radius-round;
+        background: $color-surface-solid;
+        flex-shrink: 0;
+        overflow: hidden;
 
-      .chat-author {
-        margin-bottom: $space-xxs;
-        overflow: auto;
-        text-overflow: ellipsis;
-        color: $color-muted;
-        font-size: $font-size-xs;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
 
-      .chat-content {
-        padding: $space-sm $space-md;
-        border-radius: $radius-md;
-        width: fit-content;
-        max-width: 70%;
-        color: $color;
-        align-self: flex-start;
-        margin-bottom: $space-xxs;
-      }
+      .message-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: $space-xxs;
 
-      .chat-time {
-        font-size: $font-size-xs;
-        color: $color-muted;
-        text-align: right;
-      }
-
-      &.sent {
         .chat-author {
-          text-align: end;
+          overflow: auto;
+          text-overflow: ellipsis;
+          color: $color-muted;
+          font-size: $font-size-xs;
         }
 
         .chat-content {
-          background: $message-sent-bg;
-          border-bottom-right-radius: 0;
-          align-self: end;
+          padding: $space-sm $space-md;
+          border-radius: $radius-md;
+          width: fit-content;
+          max-width: 70%;
+          color: $color;
+        }
+
+        .chat-time {
+          font-size: $font-size-xs;
+          color: $color-muted;
+          //text-align: right;
+        }
+      }
+
+      &.sent {
+        flex-direction: row-reverse;
+
+        .message-content {
+
+          .chat-author {
+            text-align: end;
+          }
+
+          .chat-content {
+            background: $message-sent-bg;
+            border-bottom-right-radius: 0;
+            align-self: end;
+          }
+
+          .chat-time {
+            text-align: end;
+          }
         }
       }
 
       &.received {
-        .chat-content {
-          border-bottom-left-radius: 0;
+        .message-content {
+          .chat-content {
+            border-bottom-left-radius: 0;
+          }
         }
       }
 
@@ -180,74 +207,108 @@ $messages-padding-bottom: calc($form-container-padding-top + $form-container-pad
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: $form-container-padding-top $space-sm $form-container-padding-bottom;
     box-shadow: $shadow-lg;
 
     form {
       display: flex;
       align-items: center;
-      gap: $space-sm;
+      gap: $space-xs;
+      padding: $form-padding;
+
+      .logout-button {
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        width: $space-lg;
+        height: $space-lg;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        color: $color;
+        border-radius: $radius-round;
+
+        .user-avatar {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: $radius-round;
+        }
+
+        .power {
+          width: $font-size-md;
+          height: $font-size-md;
+        }
+
+        &:hover {
+          color: $color-danger;
+        }
+
+        &:active {
+          color: $color-danger
+        }
+      }
+
+      .chat-input {
+        flex: 1;
+        padding: $input-padding $space-sm;
+        color: $color;
+        border-radius: $radius-s;
+        outline: none;
+        font-size: $input-font-size;
+      }
+
+      .send-button {
+        background: $color-primary;
+        border-radius: $radius-round;
+        padding: $space-xs;
+        font-size: $font-size-md;
+
+        display: flex;
+        align-items: center;
+
+        &:not(:disabled) {
+          color: $color-background;
+          box-shadow: $shadow-md;
+        }
+
+        .arrow-up {
+          width: $font-size-md;
+          height: $font-size-md;
+        }
+      }
+
+      .auth-text {
+        padding: $space-xs $space-sm;
+        display: flex;
+        justify-content: center;
+      }
     }
 
-    .logout-button {
-      border: none;
-      padding: $space-xs;
-      cursor: pointer;
+    .footer {
+      font-size: $font-size-xs;
+      color: $color-muted;
+      text-align: center;
+      padding-bottom: $footer-padding-bottom;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      .github-link {
+        color: inherit;
+        //text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: $space-xxs;
 
-      color: $color;
-      border-radius: $radius-round;
-
-      svg {
-        width: $font-size-md;
-        height: $font-size-md;
+        svg {
+          width: $footer-font-size;
+          height: $footer-font-size;
+        }
       }
 
-      &:hover {
-        color: $color-danger;
+      .separator {
+        margin: 0 $space-xxs;
       }
-
-      &:active {
-        color: $color-danger
-      }
-    }
-
-    .chat-input {
-      flex: 1;
-      padding: $input-padding $space-sm;
-      color: $color;
-      border-radius: $radius-s;
-      outline: none;
-      font-size: $input-font-size;
-    }
-
-    .send-button {
-      background: $color-primary;
-      border-radius: $radius-round;
-      padding: $space-xs;
-      font-size: $font-size-md;
-
-      display: flex;
-      align-items: center;
-
-      &:not(:disabled) {
-        color: $color-on-primary;
-        box-shadow: $shadow-md;
-      }
-
-      svg {
-        width: $font-size-md;
-        height: $font-size-md;
-      }
-    }
-
-    .auth-text {
-      padding: $space-xs $space-sm;
-      display: flex;
-      justify-content: center;
     }
   }
 }

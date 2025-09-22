@@ -1,33 +1,35 @@
 # Mini Message Board – Frontend
 
 The **Mini Message Board** is a simple web application that lets people share short messages in a chat-style interface.
-I did this project to practice and showcase my skills in full stack JavaScript. 
-This is the frontend, where I used Angular and SCSS. 
+I did this project to practice and showcase my skills in full stack JavaScript.
+This is the frontend, where I used Angular and SCSS. Check out the [backend repository](https://github.com/jurgengjoncari/mini_message_board) for the server-side code.
 
-## Overview
+## User Experience
 
-- Everyone can read messages.
-- Only authenticated users can create messages.
-- Users can sign up with a username and password.
-- Users can log out to end their session.
+- Everyone can read messages
+- Only authenticated users can create messages
+- Users can sign in using Google authentication
+- Users can log out to end their session
+- Real-time Messaging with auto-scroll
+- Smooth Animations for loading and transitions
 
----
+## User Interface
 
-## Features
+- Frosted glass effect for modern UI elements
+- Loading Skeletons while fetching messages
+- User avatars next to messages
+- Message groups organized by date
+- Safe area support for modern mobile devices
+- Responsive design for all screen sizes
+- Accessible design with high contrast colors
 
-- **Authentication**, the logged-in user's session is stored in the browser
-- **Messaging**, auto-scrolls to the latest message
-- **Loader skeletons** appear while messages are loading
-- **Error messages** are displayed inline under inputs
-- **Responsive design** – works well on mobile and desktop
-- **Animations** for smooth message rendering and transitions
-- **Accessible** - the colors contrasts conform to the level AAA. 
+## Technical Implementation
 
----
-
-## 🛠️ Tech Stack
-
-- Angular 20 (standalone components)
-- SCSS for styling (with global variables + color functions)
-- Angular HttpClient for backend communication
-- LocalStorage for authentication persistence
+- **Angular 20** with standalone components
+- **TypeScript** with strict type checking
+- Semantic **HTML** for accessibility
+- **SASS** for modular styling
+- Design tokens and variables for consistency
+- Responsive units such as `rem`, `ch`, `dvh`, etc., for scalability
+- **Google OAuth 2.0** for authentication
+- Cookie-based session management
