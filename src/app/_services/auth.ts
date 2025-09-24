@@ -59,14 +59,12 @@ export class AuthService {
    * Logout by calling the backend.
    */
   logout() {
-    this.http.post(`${apiUrl}/auth/logout`, {
+    this.http.get(`${apiUrl}/auth/logout`, {
       withCredentials: true
     })
       .subscribe({
         complete: () => { this._user.next(null); },
-        error: (error) => {
-          console.error(error);
-        },
+        error: (error) => { console.error(error); },
       });
   }
 }
