@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
@@ -21,9 +21,10 @@ const {apiUrl} = environment;
   standalone: true,
   styleUrl: './chat.scss'
 })
-export class Chat implements OnInit {
+export class Chat implements OnInit, AfterViewInit, OnDestroy {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
+  private mutationObserver?: MutationObserver;
 
   @ViewChild('messagesContainer') messagesContainer?: ElementRef<HTMLDivElement>;
   @ViewChild('messageInput') messageInput?: ElementRef<HTMLInputElement>;
@@ -50,6 +51,24 @@ export class Chat implements OnInit {
     this.getMessages();
   }
 
+  ngAfterViewInit() {
+    if (this.messagesContainer) {
+      // Scroll to bottom when new messages are added
+      this.mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.addedNodes.length > 0) {
+            this.scrollToBottom();
+          }
+        });
+      });
+      this.mutationObserver.observe(this.messagesContainer.nativeElement, { childList: true });
+    }
+  }
+
+  ngOnDestroy() {
+    this.mutationObserver?.disconnect();
+  }
+
   getMessages() {
     this.http.get<any[]>(`${apiUrl}/`, {withCredentials: true}).subscribe({
       next: (data) => {
@@ -66,7 +85,6 @@ export class Chat implements OnInit {
       next: (data) => {
         this.messages.push(data);
         this.newMessage = '';
-        setTimeout(() => this.scrollToBottom(), 0);
       },
       error: (err) => {
         console.error(err);
