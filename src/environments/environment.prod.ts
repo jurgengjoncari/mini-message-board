@@ -2,6 +2,6 @@ import { commonConfig } from './environment.common';
 
 export const environment = {
   production: true,
-  apiUrl: 'https://web-production-7d8e.up.railway.app',
+  apiUrl: 'https://mini-message-board-ur4q.onrender.com',
   ...commonConfig
 }
