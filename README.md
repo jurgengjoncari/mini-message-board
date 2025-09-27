@@ -17,7 +17,6 @@ This is the frontend, where I used Angular and SCSS. Check out the [backend repo
 
 - Frosted glass effect for modern UI elements
 - Loading Skeletons while fetching messages
-- User avatars next to messages
 - Message groups organized by date
 - Safe area support for modern mobile devices
 - Responsive design for all screen sizes
