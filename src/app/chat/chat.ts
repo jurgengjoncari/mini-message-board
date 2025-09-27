@@ -35,6 +35,7 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
   loading: boolean = true;
   authVisible = false;
   authMode: 'login' | 'signup' = 'login';
+  token = localStorage.getItem('token');
 
   get currentUser() {
     return this.authService.currentUser;
@@ -81,7 +82,14 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
   }
 
   sendMessage() {
-    this.http.post(`${apiUrl}/`, {content: this.newMessage}, {withCredentials: true}).subscribe({
+    this.http.post(`${apiUrl}/`, {
+      content: this.newMessage
+    }, {
+      headers: {
+        'Authorization': `Bearer ${this.token}`
+      },
+      // withCredentials: true
+    }).subscribe({
       next: (data) => {
         this.messages.push(data);
         this.newMessage = '';

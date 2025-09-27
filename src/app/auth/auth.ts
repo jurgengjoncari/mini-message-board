@@ -67,13 +67,13 @@ export class Auth implements OnInit, AfterViewChecked {
     }
   }
 
-  // toggleMode() {
-  //   this.mode = this.mode === 'login' ? 'signup' : 'login';
-  //   this.modeChange.emit(this.mode);
-  //   this.errorMessage = null;
-  //   this.authForm.reset();
-  //   this.buttonRendered = false; // Reset button state
-  // }
+  toggleMode() {
+    this.mode = this.mode === 'login' ? 'signup' : 'login';
+    this.modeChange.emit(this.mode);
+    this.errorMessage = null;
+    this.authForm.reset();
+    this.buttonRendered = false; // Reset button state
+  }
 
   close() {
     this.buttonRendered = false; // Reset button state

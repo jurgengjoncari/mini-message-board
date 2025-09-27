@@ -27,6 +27,16 @@ export class AuthService {
   }
 
   /**
+   * Synchronous getter for the current user.
+   * Returns null if not logged in or before refreshUser completes.
+   */
+  get currentUser(): User | null {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+    // return this._user.value;
+  }
+
+  /**
    * Fetches the currently logged-in user from the backend.
    * Updates the BehaviorSubject so components can react.
    */
@@ -41,30 +51,25 @@ export class AuthService {
   }
 
   /**
-   * Synchronous getter for the current user.
-   * Returns null if not logged in or before refreshUser completes.
-   */
-  get currentUser(): User | null {
-    return this._user.value;
-  }
-
-  /**
    * Helper to check if the user is logged in.
    */
   isLoggedIn(): boolean {
-    return !!this._user.value;
+    return !!localStorage.getItem('token');
+    // return !!this._user.value;
   }
 
   /**
    * Logout by calling the backend.
    */
   logout() {
-    this.http.get(`${apiUrl}/auth/logout`, {
-      withCredentials: true
-    })
-      .subscribe({
-        complete: () => { this._user.next(null); },
-        error: (error) => { console.error(error); },
-      });
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    // this.http.get(`${apiUrl}/auth/logout`, {
+    //   withCredentials: true
+    // })
+    //   .subscribe({
+    //     complete: () => { this._user.next(null); },
+    //     error: (error) => { console.error(error); },
+    //   });
   }
 }
