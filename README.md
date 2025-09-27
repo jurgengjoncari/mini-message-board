@@ -8,7 +8,7 @@ This is the frontend, where I used Angular and SCSS. Check out the [backend repo
 
 - Everyone can read messages
 - Only authenticated users can create messages
-- Users can sign in using Google authentication
+- Users can sign in using username and password
 - Users can log out to end their session
 - Real-time Messaging with auto-scroll
 - Smooth Animations for loading and transitions
@@ -31,5 +31,4 @@ This is the frontend, where I used Angular and SCSS. Check out the [backend repo
 - **SASS** for modular styling
 - Design tokens and variables for consistency
 - Responsive units such as `rem`, `ch`, `dvh`, etc., for scalability
-- **Google OAuth 2.0** for authentication
-- Cookie-based session management
+- Local storage based session management
