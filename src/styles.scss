@@ -81,6 +81,11 @@ button {
   font-family: $font-family-base;
   border: $border-width-none;
 
+  &.primary {
+    background: $color-primary;
+    color: $color-on-primary;
+  }
+
   &:not(:disabled) {
     cursor: pointer;
 
@@ -100,6 +105,22 @@ button {
     color: $color-muted;
     border-color: $color-muted;
     box-shadow: none;
+  }
+}
+
+.icon {
+  padding: 0;
+  width: $space-lg;
+  height: $space-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: $radius-round;
+
+  svg {
+    width: $font-size-md;
+    height: $font-size-md;
   }
 }
 

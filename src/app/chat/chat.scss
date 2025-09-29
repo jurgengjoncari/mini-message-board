@@ -216,38 +216,8 @@ $messages-padding-bottom: calc(2 * $form-padding + 2 * $input-padding + $input-f
       padding: $form-padding;
 
       .logout-button {
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        width: $space-lg;
-        height: $space-lg;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-
-        color: $color;
-        border-radius: $radius-round;
-
-        .user-avatar {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: $radius-round;
-        }
-
-        .power {
-          width: $font-size-md;
-          height: $font-size-md;
-        }
-
-        &:hover {
+        &:hover, &:active {
           color: $color-danger;
-        }
-
-        &:active {
-          color: $color-danger
         }
       }
 
@@ -260,23 +230,10 @@ $messages-padding-bottom: calc(2 * $form-padding + 2 * $input-padding + $input-f
         font-size: $input-font-size;
       }
 
-      .send-button {
-        background: $color-primary;
-        border-radius: $radius-round;
-        padding: $space-xs;
-        font-size: $font-size-md;
-
-        display: flex;
-        align-items: center;
-
+      .send-button, .login-button {
         &:not(:disabled) {
           color: $color-background;
           box-shadow: $shadow-md;
-        }
-
-        .arrow-up {
-          width: $font-size-md;
-          height: $font-size-md;
         }
       }
 

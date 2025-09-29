@@ -3,6 +3,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService, User} from '../_services/auth';
 
 const baseApi = environment.apiUrl;
 declare var google: any;
@@ -31,7 +32,8 @@ export class Auth implements OnInit, AfterViewChecked {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) {
     this.authForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -83,13 +85,12 @@ export class Auth implements OnInit, AfterViewChecked {
   onSubmit() {
     if (this.authForm.valid) {
       this.http.post<{
-        user: object;
+        user: User;
         token: string
       }>(`${baseApi}/auth/${this.mode}`, this.authForm.value)
         .subscribe({
           next: (res) => {
-            localStorage.setItem('token', res.token);
-            localStorage.setItem('user', JSON.stringify(res.user));
+            this.authService.login(res.user, res.token);
             this.visible = false;
             this.visibleChange.emit(false);
             this.loginSuccess.emit();

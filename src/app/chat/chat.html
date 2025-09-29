@@ -43,7 +43,7 @@
         <button
           type="button"
           (click)="logout()"
-          class="logout-button surface"
+          class="logout-button icon surface"
           title="Logout">
 <!--          <img class="user-avatar"-->
 <!--               [src]="currentUser?.profilePicture || '/default-avatar.jpg'"-->
@@ -67,6 +67,26 @@
             <line x1="12" y1="2" x2="12" y2="12"/>
           </svg>
         </button>
+      } @else {
+        <button
+          type="button"
+          (click)="authVisible = true"
+          class="login-button icon primary"
+          title="Login">
+          <svg
+            class="login-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+          </svg>
+        </button>
       }
       <input
         #messageInput
@@ -74,16 +94,15 @@
         [(ngModel)]="newMessage"
         name="message"
         (keyup.enter)="sendMessage()"
-        (focus)="onInputFocus()"
-        placeholder="Type your message here..."
+        [placeholder]="isLoggedIn ? 'Type your message here...' : 'Log in to send messages'"
         class="chat-input"
         required
-        [disabled]="loading"
+        [disabled]="loading || !isLoggedIn"
         autocomplete="off"
       />
       <button
         type="button"
-        class="send-button primary"
+        class="send-button icon primary"
         (click)="sendMessage()"
         [disabled]="!isLoggedIn || loading || !newMessage.trim()"
         title="Send"
@@ -127,7 +146,6 @@
 </div>
 <app-auth
   [(visible)]="authVisible"
-  [(mode)]="authMode"
   (loginSuccess)="onLoginSuccess()"
 >
 </app-auth>

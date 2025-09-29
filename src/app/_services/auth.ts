@@ -1,10 +1,7 @@
 // src/app/auth/auth.service.ts
-import {inject, Injectable} from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
-const {apiUrl} = environment;
+// const {apiUrl} = environment;
 
 export interface User {
   _id: string;
@@ -18,12 +15,12 @@ export interface User {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private http = inject(HttpClient);
-  private _user = new BehaviorSubject<User | null>(null);
-  user$ = this._user.asObservable();
+  // private http = inject(HttpClient);
+  // private _user = new BehaviorSubject<User | null>(null);
+  // user$ = this._user.asObservable();
 
   constructor() {
-    this.refreshUser();
+    // this.refreshUser();
   }
 
   /**
@@ -36,19 +33,23 @@ export class AuthService {
     // return this._user.value;
   }
 
+  get token() {
+    return localStorage.getItem('token');
+  }
+
   /**
    * Fetches the currently logged-in user from the backend.
    * Updates the BehaviorSubject so components can react.
    */
-  refreshUser() {
-    this.http.get<User>(`${apiUrl}/auth/me`, {
-      withCredentials: true
-    })
-      .subscribe({
-        next: res => this._user.next(res),
-        error: () => this._user.next(null)
-      });
-  }
+  // refreshUser() {
+  //   this.http.get<User>(`${apiUrl}/auth/me`, {
+  //     withCredentials: true
+  //   })
+  //     .subscribe({
+  //       next: res => this._user.next(res),
+  //       error: () => this._user.next(null)
+  //     });
+  // }
 
   /**
    * Helper to check if the user is logged in.
@@ -56,6 +57,11 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
     // return !!this._user.value;
+  }
+
+  login(user: User, token: string) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   /**

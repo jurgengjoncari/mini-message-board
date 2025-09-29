@@ -34,8 +34,6 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
   errorMessage: string | null = null;
   loading: boolean = true;
   authVisible = false;
-  authMode: 'login' | 'signup' = 'login';
-  token = localStorage.getItem('token');
 
   get currentUser() {
     return this.authService.currentUser;
@@ -46,9 +44,9 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.authService.user$.subscribe(() => {
-      // update UI when user state changes
-    });
+    // this.authService.user$.subscribe(() => {
+    //   // update UI when user state changes
+    // });
     this.getMessages();
   }
 
@@ -82,13 +80,13 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
   }
 
   sendMessage() {
+    if (!this.isLoggedIn) {
+      this.authVisible = true;
+      return;
+    }
+
     this.http.post(`${apiUrl}/`, {
       content: this.newMessage
-    }, {
-      headers: {
-        'Authorization': `Bearer ${this.token}`
-      },
-      // withCredentials: true
     }).subscribe({
       next: (data) => {
         this.messages.push(data);
@@ -123,12 +121,8 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
     }, 0);
   }
 
-  onImgError(event: Event) {
-    const img = event.target as HTMLImageElement;
-    if (img) img.src = 'default-avatar.jpg';
-  }
-
-  onInputFocus() {
-    if (!this.isLoggedIn) this.authVisible = true;
-  }
+  // onImgError(event: Event) {
+  //   const img = event.target as HTMLImageElement;
+  //   if (img) img.src = 'default-avatar.jpg';
+  // }
 }
