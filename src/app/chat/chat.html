@@ -71,6 +71,7 @@
         <button
           type="button"
           (click)="authVisible = true"
+          [disabled]="loading"
           class="login-button icon primary"
           title="Login">
           <svg
