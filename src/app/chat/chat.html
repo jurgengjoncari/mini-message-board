@@ -72,7 +72,6 @@
           <button
             type="button"
             (click)="authVisible = true"
-            [disabled]="loading"
             class="login-button icon primary"
             title="Login">
             <svg
@@ -99,14 +98,14 @@
           [placeholder]="isLoggedIn ? 'Type your message here...' : 'Log in to send messages'"
           class="chat-input"
           required
-          [disabled]="loading || !isLoggedIn"
+          [disabled]="!isLoggedIn"
           autocomplete="off"
         />
         <button
           type="button"
           class="send-button icon primary"
           (click)="sendMessage()"
-          [disabled]="!isLoggedIn || loading || !newMessage.trim()"
+          [disabled]="!isLoggedIn || !newMessage.trim()"
           title="Send"
         >
           <svg
