@@ -12,7 +12,7 @@ $footer-margin-bottom: max(env(safe-area-inset-bottom), $footer-margin);
 // Messages
 $message-sent-bg: rgba($color-primary, 0.2);
 $messages-gap: $space-md;
-$messages-padding-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-font-size + $messages-gap + $footer-margin-bottom + $footer-link-size);
+$messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-font-size + $footer-margin-bottom + $footer-link-size);
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }
@@ -41,7 +41,8 @@ $messages-padding-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fo
     flex-direction: column;
     gap: $messages-gap;
     scrollbar-width: thin;
-    padding: $space-md $space-sm max(env(safe-area-inset-bottom), $messages-padding-bottom);
+    padding: $space-md;
+    margin-bottom: max(env(safe-area-inset-bottom), $messages-margin-bottom);
 
     .date-separator {
       text-align: center;
