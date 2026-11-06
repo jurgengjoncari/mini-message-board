@@ -25,6 +25,7 @@
               }
             ],
             "styles": [
+              "node_modules/@jurgengjoncari/default-styles/css/style.css",
               "src/styles.scss"
             ],
             "outputPath": "dist/mini-message-board",
@@ -84,6 +85,7 @@
               }
             ],
             "styles": [
+              "node_modules/@jurgengjoncari/default-styles/css/style.css",
               "src/styles.scss"
             ]
           }
@@ -93,5 +95,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "96a0988c-f4d2-4122-a8ce-74c1a188294b"
   }
 }

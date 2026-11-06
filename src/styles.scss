@@ -1,30 +1,14 @@
-@use "_variables" as *;
-@use "_forms";
-
 html {
   min-height: 100dvh;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
-  background-color: $color-background;
+  background-color: var(--background-color);
 
   body {
     height: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    font-family:
-      $font-family-base,
-      system-ui,
-        /* macOS 10.11-10.12 */ -apple-system,
-        /* Windows 6+ */ "Segoe UI",
-        /* Android 4+ */ "Roboto",
-        /* Ubuntu 10.10+ */ "Ubuntu",
-        /* Gnome 3+ */ "Cantarell",
-        /* KDE Plasma 5+ */ "Noto Sans",
-        /* fallback */ sans-serif,
-        /* macOS emoji */ "Apple Color Emoji",
-        /* Windows emoji */ "Segoe UI Emoji",
-        /* Windows emoji */ "Segoe UI Symbol",
-        /* Linux emoji */ "Noto Color Emoji";
+    font-family: var(--font-family-base);
   }
 
   * {
@@ -33,57 +17,57 @@ html {
 }
 
 small {
-  margin-top: $space-xxs;
+  margin-top: var(--size-xxs);
   text-align: center;
 
   &.error {
-    color: $color-danger;
+    color: var(--red-text);
   }
 
   &.hint {
-    color: $color;
+    color: var(--color);
   }
 }
 
 a {
-  color: $color-primary-text;
+  color: var(--blue-text);
   text-decoration: none;
 
   &:hover {
-    color: $color-primary-hover;
+    color: color-mix(in srgb, var(--blue-text), var(--color) 20%);
     text-decoration: underline;
   }
 }
 
 input {
-  background-color: $color-surface-solid;
-  color: $color;
-  font-family: $font-family-base;
-  border: $border-width-none;
-  box-shadow: inset $shadow-sm;
+  background-color: var(--background-color);
+  color: var(--color);
+  font-family: var(--font-family-base);
+  border: var(--border-width-none);
+  box-shadow: inset var(--shadow-sm);
 
   &::placeholder {
-    color: $color-muted;
-    font-family: $font-family-base;
+    color: var(--color-muted);
+    font-family: var(--font-family-base);
   }
 
   &:disabled {
     filter: grayscale(100%);
     cursor: not-allowed;
-    background-color: $color-surface;
-    border-color: $color-muted;
-    border-width: $border-width-thin;
-    color: $color-muted;
+    background-color: var(--color-surface-fill);
+    border-color: var(--color-muted);
+    border-width: var(--border-width-thin);
+    color: var(--color-muted);
   }
 }
 
 button {
-  font-family: $font-family-base;
-  border: $border-width-none;
+  font-family: var(--font-family-base);
+  border: var(--border-width-none);
 
   &.primary {
-    background: $color-primary;
-    color: $color-on-primary;
+    background: var(--primary-color);
+    color: var(--primary-color-contrast);
   }
 
   &:not(:disabled) {
@@ -92,7 +76,7 @@ button {
     &:hover {
 
       &.primary {
-        background: $color-primary-hover;
+        background: color-mix(in srgb, var(--primary-color) 85%, black);
       }
       transform: scale(1.05);
       transition: background 0.2s ease, transform 0.1s ease;
@@ -102,32 +86,31 @@ button {
   &:disabled {
     filter: grayscale(100%);
     cursor: not-allowed;
-    color: $color-muted;
-    border-color: $color-muted;
+    color: var(--color-muted);
+    border-color: var(--color-muted);
     box-shadow: none;
   }
 }
 
 .icon {
   padding: 0;
-  width: $space-lg;
-  height: $space-lg;
+  width: var(--size-lg);
+  height: var(--size-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: $radius-round;
+  border-radius: var(--radius-round);
 
   svg {
-    width: $font-size-md;
-    height: $font-size-md;
+    width: var(--font-size-md);
+    height: var(--font-size-md);
   }
 }
 
 .surface {
-  background-color: $color-surface;
-  backdrop-filter: $frosty-glass;
-  -webkit-backdrop-filter: $frosty-glass;
-  //box-shadow: $shadow-md;
-  color: $color;
+  background-color: var(--color-surface-fill);
+  backdrop-filter: var(--frosty-glass);
+  -webkit-backdrop-filter: var(--frosty-glass);
+  color: var(--color);
 }

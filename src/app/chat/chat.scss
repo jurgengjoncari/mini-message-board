@@ -1,17 +1,14 @@
-@use "sass:color";
-@use "../../_variables" as *;
-
 // Form
-$form-margin: $space-sm;
-$input-font-size: $font-size-md;
-$input-padding: $space-xs;
+$form-margin: var(--size-sm);
+$input-font-size: var(--font-size-md);
+$input-padding: var(--size-xs);
 // Footer
-$footer-link-size: $font-size-xs;
-$footer-margin: $space-xxs;
+$footer-link-size: var(--font-size-xs);
+$footer-margin: var(--size-xxs);
 $footer-margin-bottom: max(env(safe-area-inset-bottom), $footer-margin);
 // Messages
-$message-sent-bg: rgba($color-primary, 0.2);
-$messages-gap: $space-md;
+$message-sent-bg: color-mix(in srgb, var(--primary-color) 20%, transparent);
+$messages-gap: var(--size-md);
 $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-font-size + $footer-margin-bottom + $footer-link-size);
 
 @keyframes shimmer {
@@ -31,7 +28,7 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
   bottom: 0;
   margin: 0 auto;
   font-family: sans-serif;
-  color: $color;
+  color: var(--color);
   //padding-top: max(env(safe-area-inset-top) + 3.125rem, 3.125rem);
 
   .messages {
@@ -41,24 +38,24 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
     flex-direction: column;
     gap: $messages-gap;
     scrollbar-width: thin;
-    padding: $space-md;
+    padding: var(--size-md);
     margin-bottom: max(env(safe-area-inset-bottom), $messages-margin-bottom);
 
     .date-separator {
       text-align: center;
-      font-size: $font-size-xs;
-      color: $color-muted;
+      font-size: var(--font-size-xs);
+      color: var(--color-muted);
     }
 
     .chat-message {
       display: flex;
-      gap: $space-xs;
+      gap: var(--size-xs);
 
       .avatar {
-        width: $space-lg;
-        height: $space-lg;
-        border-radius: $radius-round;
-        background: $color-surface-solid;
+        width: var(--size-lg);
+        height: var(--size-lg);
+        border-radius: var(--radius-round);
+        background: var(--background-color);
         flex-shrink: 0;
         overflow: hidden;
 
@@ -73,26 +70,26 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
         display: flex;
         flex-direction: column;
         flex: 1;
-        gap: $space-xxs;
+        gap: var(--size-xxs);
 
         .chat-author {
           overflow: auto;
           text-overflow: ellipsis;
-          color: $color-muted;
-          font-size: $font-size-xs;
+          color: var(--color-muted);
+          font-size: var(--font-size-xs);
         }
 
         .chat-content {
-          padding: $space-sm $space-md;
-          border-radius: $radius-md;
+          padding: var(--size-sm) var(--size-md);
+          border-radius: var(--radius-md);
           width: fit-content;
           max-width: 70%;
-          color: $color;
+          color: var(--color);
         }
 
         .chat-time {
-          font-size: $font-size-xs;
-          color: $color-muted;
+          font-size: var(--font-size-xs);
+          color: var(--color-muted);
           //text-align: right;
         }
       }
@@ -133,7 +130,7 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
         background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
         background-size: 200% 100%;
         animation: shimmer 1.5s infinite;
-        backdrop-filter: $frosty-glass;
+        backdrop-filter: var(--frosty-glass);
         opacity: 0.6;
 
         &:nth-child(2n) {
@@ -159,38 +156,38 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
     position: fixed;
     bottom: 0;
     width: 100%;
-    box-shadow: $shadow-lg;
+    box-shadow: var(--shadow-lg);
 
     form {
       display: flex;
       align-items: center;
-      gap: $space-xs;
+      gap: var(--size-xs);
       margin: $form-margin;
 
       .logout-button {
         &:hover, &:active {
-          color: $color-danger;
+          color: var(--red-text);
         }
       }
 
       .chat-input {
         flex: 1;
-        padding: $input-padding $space-sm;
-        color: $color;
-        border-radius: $radius-s;
+        padding: $input-padding var(--size-sm);
+        color: var(--color);
+        border-radius: var(--radius-s);
         outline: none;
         font-size: $input-font-size;
       }
 
       .send-button, .login-button {
         &:not(:disabled) {
-          color: $color-background;
-          box-shadow: $shadow-md;
+          color: var(--background-color);
+          box-shadow: var(--shadow-md);
         }
       }
 
       .auth-text {
-        padding: $space-xs $space-sm;
+        padding: var(--size-xs) var(--size-sm);
         display: flex;
         justify-content: center;
       }
@@ -202,11 +199,11 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
       margin-bottom: $footer-margin-bottom;
 
       .github-link {
-        color: $color-muted;
+        color: var(--color-muted);
         font-size: $footer-link-size;
         display: inline-flex;
         align-items: center;
-        gap: $space-xxs;
+        gap: var(--size-xxs);
 
         svg {
           width: $footer-link-size;
@@ -215,7 +212,7 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
       }
 
       .separator {
-        margin: 0 $space-xxs;
+        margin: 0 var(--size-xxs);
       }
     }
   }
