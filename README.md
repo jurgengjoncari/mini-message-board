@@ -2,7 +2,7 @@
 
 The **Mini Message Board** is a simple web application that lets people share short messages in a chat-style interface.
 I did this project to practice and showcase my skills in full stack JavaScript.
-This is the frontend, where I used Angular and SCSS. Check out the [backend repository](https://github.com/jurgengjoncari/mini_message_board) for the server-side code.
+This is the frontend, where I used Angular and SCSS. Check out the [backend repository](https://github.com/jurgengjoncari/mini-message-board-api) for the server-side code.
 
 ## User Experience
 
@@ -31,3 +31,23 @@ This is the frontend, where I used Angular and SCSS. Check out the [backend repo
 - Design tokens and variables for consistency
 - Responsive units such as `rem`, `ch`, `dvh`, etc., for scalability
 - Local storage based session management
+
+## To Run Locally
+
+Requirements:
+- [Node.js 22 or later](https://nodejs.org/en/download/) (includes npm)
+- The [backend API](https://github.com/jurgengjoncari/mini-message-board-api) running at `http://localhost:8000`
+
+Open a terminal in this folder and install dependencies:
+
+```powershell
+npm install
+```
+
+Start the frontend:
+
+```powershell
+npm start
+```
+
+Open `http://localhost:4200`. The development configuration connects to the API at `http://localhost:8000`; set the backend's `PORT` to `8000` when running locally.
