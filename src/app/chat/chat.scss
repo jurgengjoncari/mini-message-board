@@ -1,6 +1,6 @@
 $line-height: var(--line-height-medium);
 // Form
-$form-margin: var(--size-sm);
+$form-margin: var(--size-md);
 $input-font-size: var(--font-size-md);
 $input-padding: var(--size-sm);
 $input-height: calc(2 * $input-padding + $input-font-size * $line-height);
@@ -159,12 +159,11 @@ $messages-margin-bottom: calc($form-height + $footer-height + var(--size-sm));
     position: fixed;
     bottom: 0;
     width: 100%;
-    box-shadow: var(--shadow-lg);
 
     form {
       display: flex;
       align-items: center;
-      gap: var(--size-xs);
+      gap: var(--size-sm);
       margin: $form-margin;
 
       .logout-button {
@@ -175,12 +174,7 @@ $messages-margin-bottom: calc($form-height + $footer-height + var(--size-sm));
 
       .chat-input {
         flex: 1;
-      }
-
-      .send-button, .login-button {
-        &:not(:disabled) {
-          color: var(--background-color);
-        }
+        border-radius: var(--radius-round);
       }
 
       .auth-text {
