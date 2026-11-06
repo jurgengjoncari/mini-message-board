@@ -42,7 +42,7 @@ $messages-margin-bottom: calc($form-height + $footer-height + var(--size-sm));
     gap: $messages-gap;
     scrollbar-width: thin;
     padding: var(--size-md);
-    padding-bottom: max(env(safe-area-inset-bottom), $messages-margin-bottom);
+    margin-bottom: max(env(safe-area-inset-bottom), $messages-margin-bottom);
 
     .date-separator {
       text-align: center;
