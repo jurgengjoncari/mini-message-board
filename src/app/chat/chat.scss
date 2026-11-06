@@ -1,15 +1,19 @@
+$line-height: var(--line-height-medium);
 // Form
 $form-margin: var(--size-sm);
 $input-font-size: var(--font-size-md);
-$input-padding: var(--size-xs);
+$input-padding: var(--size-sm);
+$input-height: calc(2 * $input-padding + $input-font-size * $line-height);
+$form-height: calc(2 * $form-margin + $input-height);
 // Footer
-$footer-link-size: var(--font-size-xs);
+$footer-link-size: var(--font-size-sm);
 $footer-margin: var(--size-xxs);
 $footer-margin-bottom: max(env(safe-area-inset-bottom), $footer-margin);
+$footer-height: calc($footer-margin + $footer-margin-bottom + $footer-link-size * $line-height);
 // Messages
 $message-sent-bg: color-mix(in srgb, var(--primary-color) 20%, transparent);
 $messages-gap: var(--size-md);
-$messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-font-size + $footer-margin-bottom + $footer-link-size);
+$messages-margin-bottom: calc($form-height + $footer-height + var(--size-sm));
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }
@@ -27,7 +31,6 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
   right: 0;
   bottom: 0;
   margin: 0 auto;
-  font-family: sans-serif;
   color: var(--color);
   //padding-top: max(env(safe-area-inset-top) + 3.125rem, 3.125rem);
 
@@ -39,11 +42,11 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
     gap: $messages-gap;
     scrollbar-width: thin;
     padding: var(--size-md);
-    margin-bottom: max(env(safe-area-inset-bottom), $messages-margin-bottom);
+    padding-bottom: max(env(safe-area-inset-bottom), $messages-margin-bottom);
 
     .date-separator {
       text-align: center;
-      font-size: var(--font-size-xs);
+      font-size: var(--font-size-sm);
       color: var(--color-muted);
     }
 
@@ -76,7 +79,7 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
           overflow: auto;
           text-overflow: ellipsis;
           color: var(--color-muted);
-          font-size: var(--font-size-xs);
+          font-size: var(--font-size-sm);
         }
 
         .chat-content {
@@ -172,17 +175,11 @@ $messages-margin-bottom: calc(2 * $form-margin + 2 * $input-padding + $input-fon
 
       .chat-input {
         flex: 1;
-        padding: $input-padding var(--size-sm);
-        color: var(--color);
-        border-radius: var(--radius-s);
-        outline: none;
-        font-size: $input-font-size;
       }
 
       .send-button, .login-button {
         &:not(:disabled) {
           color: var(--background-color);
-          box-shadow: var(--shadow-md);
         }
       }
 
