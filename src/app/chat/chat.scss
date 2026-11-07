@@ -37,6 +37,7 @@ $messages-margin-bottom: calc($form-height + $footer-height);
   .messages {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: $messages-gap;
