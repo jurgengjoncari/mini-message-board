@@ -17,7 +17,7 @@
       }
     } @else {
       @for (group of messages | groupByDate; track group.key) {
-        <time class="date-separator">{{ group.key }}</time>
+        <time [attr.datetime]="group.date" class="date-separator">{{ group.key }}</time>
         @for (msg of group.value; track msg._id) {
           <div [class]="'chat-message' + (msg.senderId?._id === currentUser?._id ? ' sent' : ' received')">
 <!--            <div class="avatar">-->

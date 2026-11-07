@@ -1,12 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+type DateGroup = {
+  key: string;
+  date: string;
+  value: any[];
+};
+
 @Pipe({
   name: 'groupByDate',
   standalone: true,
   pure: false
 })
 export class GroupByDatePipe implements PipeTransform {
-  transform(messages: any[]): { key: string; value: any[] }[] {
+  transform(messages: any[]): DateGroup[] {
     if (!messages?.length) return [];
 
     const dateFormatter = new Intl.DateTimeFormat('en-US', {
@@ -28,9 +34,15 @@ export class GroupByDatePipe implements PipeTransform {
       weekday: 'short'
     });
 
-    const groups = messages.reduce((acc, message) => {
+    const groups = messages.reduce<Map<string, { date: string; value: any[] }>>((acc, message) => {
       const date = new Date(message.createdAt);
       date.setHours(0, 0, 0, 0);
+      const dateValue = [
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, '0'),
+        String(date.getDate()).padStart(2, '0')
+      ].join('-');
+
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
@@ -53,13 +65,19 @@ export class GroupByDatePipe implements PipeTransform {
       }
 
       if (!acc.has(dateStr)) {
-        acc.set(dateStr, []);
+        acc.set(dateStr, {
+          date: dateValue,
+          value: []
+        });
       }
-      acc.get(dateStr)?.push(message);
+      acc.get(dateStr)?.value.push(message);
       return acc;
-    }, new Map<string, any[]>());
+    }, new Map<string, { date: string; value: any[] }>());
 
-    // @ts-ignore
-    return Array.from(groups.entries()).map(([key, value]) => ({ key, value }));
+    return Array.from(groups.entries()).map(([key, group]) => ({
+      key,
+      date: group.date,
+      value: group.value
+    }));
   }
 }

@@ -37,6 +37,13 @@
           }
         }
       }
+    },
+    {
+      "label": "Deploy frontend",
+      "type": "npm",
+      "script": "deploy",
+      "group": "build",
+      "problemMatcher": []
     }
   ]
 }
