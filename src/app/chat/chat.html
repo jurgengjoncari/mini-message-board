@@ -70,9 +70,11 @@
           </button>
         } @else {
           <button
+            #loginButton
             type="button"
             (click)="authVisible = true"
             class="login-button icon primary"
+            [class.is-filled]="!isLoggedIn"
             title="Login">
             <svg
               class="login-icon"
@@ -98,12 +100,12 @@
           [placeholder]="isLoggedIn ? 'Type your message here...' : 'Log in to send messages'"
           class="chat-input"
           required
-          [disabled]="!isLoggedIn"
           autocomplete="off"
         />
         <button
           type="button"
           class="send-button icon primary"
+          [class.is-filled]="isLoggedIn"
           (click)="sendMessage()"
           [disabled]="!isLoggedIn || !newMessage.trim()"
           title="Send"

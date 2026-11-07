@@ -28,6 +28,16 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('messagesContainer') messagesContainer?: ElementRef<HTMLDivElement>;
   @ViewChild('messageInput') messageInput?: ElementRef<HTMLInputElement>;
+  private loginButton?: ElementRef<HTMLButtonElement>;
+
+  @ViewChild('loginButton')
+  set loginButtonElement(button: ElementRef<HTMLButtonElement> | undefined) {
+    this.loginButton = button;
+
+    if (button && !this.isLoggedIn) {
+      setTimeout(() => button.nativeElement.focus({preventScroll: true}), 0);
+    }
+  }
 
   messages: any[] = [];
   newMessage: string = '';
@@ -74,8 +84,13 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
         this.messages = data;
         setTimeout(() => this.scrollToBottom(), 0);
         this.loading = false;
+        this.focusLoginButton();
       },
-      error: (err) => console.error(err)
+      error: (err) => {
+        console.error(err);
+        this.loading = false;
+        this.focusLoginButton();
+      }
     });
   }
 
@@ -108,6 +123,7 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+    this.focusLoginButton();
   }
 
   scrollToBottom() {
@@ -119,6 +135,14 @@ export class Chat implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.messageInput?.nativeElement.focus();
     }, 0);
+  }
+
+  private focusLoginButton() {
+    if (!this.isLoggedIn) {
+      setTimeout(() => {
+        this.loginButton?.nativeElement.focus();
+      }, 0);
+    }
   }
 
   // onImgError(event: Event) {
