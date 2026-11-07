@@ -1,6 +1,7 @@
-import {AfterViewChecked, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewChecked, Component, Input, OnInit} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {Location} from '@angular/common';
 import {environment} from '../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService, User} from '../_services/auth';
@@ -19,11 +20,7 @@ declare var google: any;
   styleUrl: './auth.scss'
 })
 export class Auth implements OnInit, AfterViewChecked {
-  @Input() visible = false;
   @Input() mode: 'login' | 'signup' = 'login';
-  @Output() visibleChange = new EventEmitter<boolean>();
-  @Output() modeChange = new EventEmitter<'login' | 'signup'>();
-  @Output() loginSuccess = new EventEmitter<void>();
 
   private readonly client_id = environment.googleClientId;
   private buttonRendered = false;
@@ -33,7 +30,8 @@ export class Auth implements OnInit, AfterViewChecked {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private location: Location
   ) {
     this.authForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -51,7 +49,7 @@ export class Auth implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    if (this.visible && !this.buttonRendered) {
+    if (!this.buttonRendered) {
       this.renderGoogleButton();
     }
   }
@@ -71,7 +69,6 @@ export class Auth implements OnInit, AfterViewChecked {
 
   toggleMode() {
     this.mode = this.mode === 'login' ? 'signup' : 'login';
-    this.modeChange.emit(this.mode);
     this.errorMessage = null;
     this.authForm.reset();
     this.buttonRendered = false; // Reset button state
@@ -79,7 +76,7 @@ export class Auth implements OnInit, AfterViewChecked {
 
   close() {
     this.buttonRendered = false; // Reset button state
-    this.visibleChange.emit(false);
+    this.location.back();
   }
 
   onSubmit() {
@@ -91,10 +88,7 @@ export class Auth implements OnInit, AfterViewChecked {
         .subscribe({
           next: (res) => {
             this.authService.login(res.user, res.token);
-            this.visible = false;
-            this.visibleChange.emit(false);
-            this.loginSuccess.emit();
-            // this.router.navigate(['/']);
+            this.location.back();
           },
           error: (err) => {
             console.error();

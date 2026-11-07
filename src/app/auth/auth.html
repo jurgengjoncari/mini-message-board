@@ -1,10 +1,9 @@
-@if (visible) {
-  <div class="auth-container surface" (click)="close()">
-    <form class="auth-card surface"
-          [formGroup]="authForm"
-          (ngSubmit)="onSubmit()"
-          (click)="$event.stopPropagation()"
-    >
+<div class="auth-container surface" (click)="close()">
+  <form class="auth-card surface"
+        [formGroup]="authForm"
+        (ngSubmit)="onSubmit()"
+        (click)="$event.stopPropagation()"
+  >
 <!--      <div class="auth-title">Connect</div>-->
 
 <!--      <div id="googleBtn" style="width: 100%"></div>-->
@@ -45,6 +44,5 @@
           </a>
         </span>
       </div>
-    </form>
-  </div>
-}
+  </form>
+</div>

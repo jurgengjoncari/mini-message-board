@@ -38,7 +38,7 @@
     }
   </div>
   <div class="form-container surface">
-    <form>
+    <div class="chat-composer">
       @if (isLoggedIn) {
         <button
           type="button"
@@ -71,7 +71,7 @@
         <button
           #loginButton
           type="button"
-          (click)="authVisible = true"
+          (click)="openLogin()"
           class="login-button icon primary"
           [class.is-filled]="!isLoggedIn"
           title="Login">
@@ -94,7 +94,6 @@
         #messageInput
         type="text"
         [(ngModel)]="newMessage"
-        name="message"
         (keyup.enter)="sendMessage()"
         [placeholder]="isLoggedIn ? 'Type your message here...' : 'Log in to send messages'"
         class="chat-input"
@@ -122,7 +121,7 @@
           <polyline points="5 12 12 5 19 12"></polyline>
         </svg>
       </button>
-    </form>
+    </div>
     <footer class="footer">
       <a href="https://github.com/jurgengjoncari/mini-message-board"
          target="_blank"
@@ -145,8 +144,3 @@
     </footer>
   </div>
 </div>
-<app-auth
-  [(visible)]="authVisible"
-  (loginSuccess)="onLoginSuccess()"
->
-</app-auth>

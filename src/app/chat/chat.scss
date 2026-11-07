@@ -160,7 +160,7 @@ $messages-margin-bottom: calc($form-height + $footer-height);
     bottom: 0;
     width: 100%;
 
-    form {
+    .chat-composer {
       display: flex;
       align-items: center;
       gap: var(--size-sm);
