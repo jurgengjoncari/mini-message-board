@@ -13,7 +13,7 @@ $footer-height: calc($footer-margin + $footer-margin-bottom + $footer-link-size 
 // Messages
 $message-sent-bg: color-mix(in srgb, var(--primary-color) 20%, transparent);
 $messages-gap: var(--size-md);
-$messages-margin-bottom: calc($form-height + $footer-height + var(--size-sm));
+$messages-margin-bottom: calc($form-height + $footer-height);
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }
