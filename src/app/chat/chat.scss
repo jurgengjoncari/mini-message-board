@@ -84,7 +84,7 @@ $messages-margin-bottom: calc($form-height + $footer-height);
 
         .chat-content {
           padding: var(--size-sm) var(--size-md);
-          border-radius: var(--radius-round);
+          border-radius: var(--radius-control);
           width: fit-content;
           max-width: 70%;
           color: var(--color);
@@ -176,7 +176,6 @@ $messages-margin-bottom: calc($form-height + $footer-height);
       .chat-input {
         flex: 1;
         min-width: 0;
-        border-radius: var(--radius-round);
       }
 
       .auth-text {
