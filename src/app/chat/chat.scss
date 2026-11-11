@@ -57,7 +57,7 @@ $messages-margin-bottom: calc($form-height + $footer-height);
       .avatar {
         width: var(--size-lg);
         height: var(--size-lg);
-        border-radius: var(--radius-round);
+        border-radius: var(--radius-control);
         background: var(--background-color);
         flex-shrink: 0;
         overflow: hidden;

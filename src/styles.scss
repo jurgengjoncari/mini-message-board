@@ -1,3 +1,7 @@
+:root {
+  --radius-control: var(--radius-control-round);
+}
+
 html {
   min-height: 100dvh;
   padding-top: env(safe-area-inset-top);
