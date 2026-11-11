@@ -1,0 +1,28 @@
+.footer {
+  text-align: center;
+  font-size: var(--footer-link-size);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--footer-margin) 0 var(--footer-margin-bottom);
+  line-height: var(--line-height-medium);
+  z-index: 1;
+
+  .github-link {
+    color: var(--color-muted);
+    font-size: var(--footer-link-size);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--size-xxs);
+
+    svg {
+      width: var(--footer-link-size);
+      height: var(--footer-link-size);
+    }
+  }
+
+  .separator {
+    margin: 0 var(--size-xxs);
+  }
+}

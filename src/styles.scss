@@ -1,6 +1,10 @@
 :root {
   --radius-control: var(--radius-control-round);
-  --radius-surface: var(--radius-surface-xxl);
+
+  --footer-link-size: var(--font-size-sm);
+  --footer-margin: var(--size-xxs);
+  --footer-margin-bottom: max(env(safe-area-inset-bottom), var(--footer-margin));
+  --footer-height: calc(var(--footer-margin) + var(--footer-margin-bottom) + var(--footer-link-size) * var(--line-height-medium));
 }
 
 html {

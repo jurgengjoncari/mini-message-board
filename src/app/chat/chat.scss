@@ -5,15 +5,9 @@ $input-font-size: var(--font-size-md);
 $input-padding: var(--size-sm);
 $input-height: calc(2 * $input-padding + $input-font-size * $line-height);
 $form-height: calc(2 * $form-margin + $input-height);
-// Footer
-$footer-link-size: var(--font-size-sm);
-$footer-margin: var(--size-xxs);
-$footer-margin-bottom: max(env(safe-area-inset-bottom), $footer-margin);
-$footer-height: calc($footer-margin + $footer-margin-bottom + $footer-link-size * $line-height);
 // Messages
 $message-sent-bg: color-mix(in srgb, var(--primary-color) 20%, transparent);
 $messages-gap: var(--size-md);
-$messages-margin-bottom: calc($form-height + $footer-height);
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }
@@ -24,12 +18,11 @@ $messages-margin-bottom: calc($form-height + $footer-height);
   display: flex;
   flex-direction: column;
   max-width: 80ch;
-  height: 100dvh;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: var(--footer-height);
   margin: 0 auto;
   color: var(--color);
   //padding-top: max(env(safe-area-inset-top) + 3.125rem, 3.125rem);
@@ -42,7 +35,7 @@ $messages-margin-bottom: calc($form-height + $footer-height);
     gap: $messages-gap;
     scrollbar-width: thin;
     padding: var(--size-md);
-    margin-bottom: max(env(safe-area-inset-bottom), $messages-margin-bottom);
+    margin-bottom: max(env(safe-area-inset-bottom), $form-height);
 
     .date-separator {
       text-align: center;
@@ -84,7 +77,7 @@ $messages-margin-bottom: calc($form-height + $footer-height);
 
         .chat-content {
           padding: var(--size-sm) var(--size-md);
-          border-radius: var(--radius-surface);
+          border-radius: var(--radius-surface-xxl);
           width: fit-content;
           max-width: 70%;
           color: var(--color);
@@ -156,7 +149,7 @@ $messages-margin-bottom: calc($form-height + $footer-height);
   }
 
   .form-container {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
 
@@ -185,27 +178,6 @@ $messages-margin-bottom: calc($form-height + $footer-height);
       }
     }
 
-    .footer {
-      text-align: center;
-      margin-top: $footer-margin;
-      margin-bottom: $footer-margin-bottom;
-
-      .github-link {
-        color: var(--color-muted);
-        font-size: $footer-link-size;
-        display: inline-flex;
-        align-items: center;
-        gap: var(--size-xxs);
-
-        svg {
-          width: $footer-link-size;
-          height: $footer-link-size;
-        }
-      }
-
-      .separator {
-        margin: 0 var(--size-xxs);
-      }
-    }
   }
+
 }
